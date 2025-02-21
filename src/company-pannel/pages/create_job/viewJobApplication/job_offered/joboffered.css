@@ -1,0 +1,37 @@
+.job-offered-file {
+    display: flex;
+    background: white;
+}
+.upload-job-offer {
+    font-size: 0.8rem;
+    background: transparent;
+    border: 1.32px dashed grey;
+    border-radius: 6px;
+
+    padding: 14px 80px;
+}
+.upload-job-offer span {
+    color: #3b96e1;
+    text-decoration: underline;
+}
+.offered-send {
+    font-size: 0.8rem;
+
+    border: 1.32px dashed grey;
+    border-radius: 2px;
+
+    padding: 8px 100px;
+    background: #3b96e1;
+    cursor: pointer;
+}
+.offered-send span {
+    color: #ffffff;
+}
+
+.custom-option-exps {
+    width: 98%;
+    border-radius: 6px;
+    padding: 4px;
+   
+    border: 1.5px solid #aeaeae;
+}

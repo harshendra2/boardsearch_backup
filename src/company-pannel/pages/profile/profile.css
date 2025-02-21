@@ -1,0 +1,335 @@
+.ReportedJob {
+    width: 100%;
+    background: #f8f8f8;
+    padding: 20px;
+}
+.subReportedjob {
+    padding: 14px;
+    background: white;
+    width: 84%;
+    margin: 0px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 2px rgba(228, 228, 228, 0.707);
+}
+
+.Skills {
+    margin-top: 20px;
+    display: flex;
+    gap: 14px;
+}
+.Skills p {
+    background: #f8f8f8;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 12px;
+    color: #656565;
+    font-weight: 400;
+}
+.personalDetails {
+    width: 100%;
+}
+.cards {
+    width: 110px;
+    display: flex;
+}
+.cards p {
+    font-size: 12px;
+    color: #aeaeae;
+}
+.tables p {
+    margin-right: 12px;
+    margin-top: -10px;
+}
+.lastcard {
+    display: flex;
+}
+.lastcard p {
+    margin-right: 10px;
+}
+.appliction_btn {
+    width: 22%;
+}
+.appliction_btn p {
+    background: #b4ddff;
+    color: #3b96e1;
+    padding: 4px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Ensures it looks clickable */
+}
+
+.icon-left {
+    margin-right: 8px; /* Space between left icon and text */
+    font-size: 16px; /* Adjust icon size as needed */
+}
+
+.icon-right {
+    margin-left: auto; /* Pushes the right icon to the far right */
+    font-size: 16px; /* Adjust icon size as needed */
+}
+summary {
+    list-style: none; /* Remove the default marker */
+}
+
+summary::-webkit-details-marker {
+    display: none; /* Hide the default marker in WebKit browsers (Chrome, Safari) */
+}
+
+summary::marker {
+    display: none; /* Hide the default marker in other browsers */
+}
+details {
+    width: 100%;
+}
+
+.red_btn {
+    display: flex;
+    gap: 12px;
+}
+.red_btn1 p {
+    background: #febabc;
+    color: #ff0000;
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+    width: 16vw;
+    border: 1.3px solid red;
+}
+.red_btn2 p {
+    background: #ff0000;
+    color: #ffffff;
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+    width: 16vw;
+    border: 1.3px solid red;
+    cursor: pointer;
+}
+
+.subReportedjob_1 {
+    overflow-y: auto;
+    height: 50vh;
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+}
+
+.dropdown p {
+    font-size: 0.86rem;
+    color: #aeaeae;
+    font-weight: 400;
+}
+
+.responsibilities p {
+    font-size: 0.86rem;
+    color: #aeaeae;
+    font-weight: 400;
+}
+.responsibilities ul li {
+    font-size: 0.86rem;
+    color: #aeaeae;
+    font-weight: 400;
+}
+.topsection {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit img {
+    height: 24px;
+}
+.edit p {
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-top: 16px;
+    margin-right: 4px;
+    color: #3b96e1;
+}
+.Overview p {
+    font-size: 11px;
+    color: #aeaeae;
+}
+.info {
+    width: 100%;
+    display: flex;
+
+    margin: 10px auto;
+    width: 84%;
+    gap: 12px;
+}
+.public {
+    overflow: hidden;
+    width: 50%;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px rgba(228, 228, 228, 0.707);
+}
+.private {
+    width: 50%;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px rgba(228, 228, 228, 0.707);
+}
+
+.cardsFlex {
+    display: flex;
+}
+
+.tables-right {
+    color: black;
+}
+.reviews {
+    width: 100%;
+    padding: 10px;
+
+    background: white;
+    margin: 10px auto;
+    width: 84%;
+    gap: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px rgba(228, 228, 228, 0.707);
+}
+.profilecard {
+    width: 280px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    padding: 10px;
+    position: relative;
+    margin-top: 44px;
+    margin-right: 10px;
+}
+
+.profilecard p {
+    font-size: 0.7rem;
+
+    font-family: Poppins;
+
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+}
+.profilimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -40px;
+    border-radius: 50%;
+}
+.pCards {
+    display: flex;
+}
+.profilecard span {
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+}
+.names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+/* Custom styles for the modal */
+.custom-modal .modal-dialog {
+    max-width: 80%;
+}
+
+.custom-modal .modal-content {
+    height:auto;
+    border-radius: 8px;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-body,
+.custom-modal .modal-footer {
+    padding: 20px;
+}
+.rejection {
+    margin: 0px auto;
+    border-left: 3.96px solid red;
+    border-radius: 12px;
+    width: 84%;
+    background: white;
+    padding: 12px;
+}
+.status {
+    columns: #051f50;
+    font-weight: 500;
+}
+.profile-percentage {
+    display: flex;
+}
+.profile-percentage p {
+    cursor: pointer;
+}
+.pro {
+    margin-left: 20px;
+}
+
+.divice-loged-in {
+    color: #3b96e1;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+/* For WebKit browsers (Chrome, Safari) */
+.align::-webkit-scrollbar {
+    height: 6px;
+}
+
+.align::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+/* For Firefox */
+.align {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}
+
+@media (max-width: 768px) {
+    .info {
+        flex-wrap: wrap;
+    }
+    .public {
+        width: 100%;
+    }
+    .private {
+        width: 100%;
+    }
+}
+@media (max-width: 575.98px) {
+    .subReportedjob {
+        width: 100%;
+    }
+    .info {
+        width: 100%;
+    }
+    .divice-loged-in p {
+        font-size: 0.6rem;
+    }
+}

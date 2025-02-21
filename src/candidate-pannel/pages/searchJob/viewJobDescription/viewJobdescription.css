@@ -1,0 +1,29 @@
+.view-job-description {
+    width: 100%;
+    background: white;
+    padding: 10px;
+
+    border-radius: 8px;
+}
+.veiw-skills {
+    display: flex;
+    flex-wrap: wrap;
+}
+.veiw-skills p {
+    background: #f8f8f8;
+    padding: 4px;
+    font-size: 0.8rem;
+    margin-right: 6px;
+    border-radius: 8px;
+}
+.job-description-view {
+    overflow-y: auto;
+    height: 50vh;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}

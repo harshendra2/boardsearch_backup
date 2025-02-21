@@ -1,0 +1,259 @@
+.add-experence-card {
+    margin-top: 10px;
+    padding: 2px;
+}
+.add-experence-card h4 {
+    font-family: Poppins;
+    font-size: 0.96rem;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: #3b96e1;
+}
+.add-experence-card h6 {
+    margin-top: -6px;
+    display: flex;
+    color: #051f50;
+    font-size: 0.99rem;
+}
+.add-experence-card h6 ul li {
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-left: -4px;
+    margin-top: 1.5px;
+}
+.exp-add {
+    margin-top: -22px;
+    font-family: Poppins;
+    font-size: 0.8rem;
+    color: #7e7e7e;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 22px;
+    display: flex;
+}
+.reviling {
+    color: #3b96e1;
+    text-decoration: underline;
+    margin-top: -20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.experience {
+    margin-top: -25px;
+}
+.work-detials {
+    margin-left: 40px;
+}
+.projects {
+    margin-left: 40px;
+}
+.data {
+    color: #051f50;
+    font-weight: 400;
+    font-size: 0.88rem;
+    padding: 5px;
+}
+.exp-pdf {
+    width: 180px;
+    background: #f8f8f8;
+    height: 30px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+}
+.exp-pdf p {
+    margin-top: 7px;
+    margin-left: 6px;
+    font-size: 0.7rem;
+}
+.exp-pdf-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    background: #3b96e1;
+    height: 30px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: white;
+}
+.exp-review {
+    width: 100%;
+    padding: 10px;
+
+    gap: 12px;
+}
+/* Education CSS */
+.education {
+    margin-left: 2px;
+}
+.education-card {
+    width: 45%;
+    border: 1px solid #e3e3e3;
+    border-radius: 6px;
+    padding: 12px;
+    overflow: hidden;
+    text-wrap: wrap;
+    margin-top: 4px;
+}
+.education-card h4 {
+    color: #3b96e1;
+}
+.eduction-details {
+    display: flex;
+    margin-top: -4px;
+}
+.eduction-details p {
+    color: #051f50;
+    font-size: 0.9rem;
+}
+.eduction-details ul li {
+    color: #051f50;
+    font-size: 0.9rem;
+}
+.eduction-time {
+    display: flex;
+    margin-top: -14px;
+}
+.eduction-time p {
+    font-size: 0.9rem;
+    color: #7e7e7e;
+}
+.grade {
+    font-size: 0.9rem;
+    color: #7e7e7e;
+    margin-top: -14px;
+}
+.description {
+    font-size: 0.9rem;
+    color: #7e7e7e;
+    margin-top: -14px;
+    word-wrap: break-word;
+}
+.eduction-pdf {
+    margin-top: -12px;
+}
+
+/* Edit Education CSS */
+.edit-education-p {
+    text-align: center;
+    color: #051f50;
+    font-weight: 600;
+}
+.edit-lable-edu {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.education-form {
+    outline: none;
+    height: 35px;
+    border: 1px solid gray;
+
+    font-size: 0.8rem;
+    margin-top: -4px;
+}
+.add-eduction-details {
+    border: 1px solid grey;
+    margin-top: 12px;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: #f8f8f8;
+}
+.add-eduction-details p {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #8d8d8d;
+}
+.eduction-degree-name {
+    display: flex;
+    justify-content: space-between;
+}
+.eduction-degree-name img {
+    height: 20px;
+    cursor: pointer;
+}
+.delete-eduction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.delete-eduction img {
+    height: 20px;
+    cursor: pointer;
+}
+.education-btn {
+    border: 1px dashed #aeaeae;
+    background: #ffffff;
+    border-radius: 8px;
+    color: #3b96e1;
+    font-size: 0.6rem;
+    padding: 10px 10px;
+    margin-top: 26px;
+    width: 100%;
+    text-decoration: underline;
+    font-weight: 500;
+}
+.add-certi {
+    padding: 2px 6px;
+    background: #7db6e6;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: none;
+    margin-top: 4px;
+}
+.add-certi img {
+    height: 20px;
+}
+.education-calednder {
+    margin-top: 40px;
+    margin-left: -6px;
+    cursor: pointer;
+    height: 20px;
+}
+.education-details-card {
+    width: 110%;
+}
+.add-new-edu {
+    width: 46.44%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.add-new-edu img {
+    height: 20px;
+    cursor: pointer;
+}
+
+.peoject-radio input[type='radio'] {
+    accent-color: transparent; /* Reset default styling */
+    width: 15px;
+    height: 15px;
+    border: 1px solid #007bff; /* Custom border color */
+    border-radius: 50%; /* Make it circular */
+    outline: none;
+    cursor: pointer;
+}
+.peoject-radio .form-check-label {
+    font-size: 13px; /* Adjust the font size to your preference */
+}
+.project-details {
+    background-color: #007bff;
+    display: flex;
+}
+.p-left {
+    background: #d09898;
+}
+@media (max-width: 575.98px) {
+    .work-detials {
+        margin-left: 0px;
+    }
+    .education-card {
+        width: 100%;
+    }
+    .add-new-edu {
+        width: 100%;
+    }
+}

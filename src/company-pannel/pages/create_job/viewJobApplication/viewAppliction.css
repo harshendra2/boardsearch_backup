@@ -1,0 +1,131 @@
+.view-application {
+    width: 100%;
+}
+.header-view {
+    background: white;
+    margin-left: 12px;
+    border-radius: 12px;
+    padding: 8px;
+    width: 97.8%;
+}
+.cmp-img {
+    height: 50px;
+    width: 50px;
+    background: rgb(224, 223, 223);
+    margin-right: 4px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.cmp-img img {
+    width: 100%;
+}
+.top-head {
+    display: flex;
+    align-items: center;
+    margin-top: px;
+}
+.top-head {
+}
+.view-top-content {
+    margin-top: 0px;
+}
+.view-top-content h3 {
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    color: #051f50;
+}
+.view-top-content p {
+    margin-top: -10px;
+    font-size: 0.85rem;
+    color: #3b96e1;
+}
+.view-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    gap: 6px;
+}
+/* .view-list ul li {
+    display: inline;
+} */
+.view-list p {
+    font-size: 0.85rem;
+    background: #f8f8f8;
+    padding: 6px;
+    border-radius: 12px;
+}
+.view-tables {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    flex-wrap: wrap;
+}
+.view-dropdown {
+    display: flex;
+}
+.view-dropdown h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    color: #051f50;
+}
+.view-dropdown img {
+    margin-top: 5px;
+    cursor: pointer;
+}
+.job-discription {
+    width: 100%;
+    background: white;
+}
+.view-btn {
+    background: white;
+    margin-left: 1px;
+    padding: 4px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+.view-btn ul li {
+    list-style-type: none;
+    display: inline;
+    margin-left: -30px;
+    margin-right: 28px;
+}
+.view-btn button {
+    padding: 4px 14px;
+    margin-right: 14px;
+    margin-bottom: -14px;
+}
+.job-discription {
+    line-height: 1.6;
+    font-size: 0.8rem;
+}
+
+.job-discription strong {
+    font-weight: 600;
+    color: rgb(6, 6, 42);
+}
+
+.job-discription ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.job-discription ul li {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 575.98px) {
+    .header-view {
+        margin-left: 0px;
+    }
+    .view-btn ul li {
+        display: flex;
+
+        margin-top: 20px;
+    }
+}

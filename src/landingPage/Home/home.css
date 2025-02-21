@@ -1,0 +1,87 @@
+.home-conatiner {
+    display: flex;
+    flex-wrap: wrap;
+}
+.home-conatents {
+    width: 50%;
+}
+.home-image-left {
+    width: 50%;
+}
+.home-p {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 116%;
+    margin-top: 100px;
+    color: white;
+}
+.home-span {
+    font-size: 0.8rem;
+    color: white;
+    font-weight: 300;
+    width: 80%;
+    margin-top: -8px;
+}
+.home-buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 34px;
+}
+.home-buttons button {
+    font-size: 0.9rem;
+    padding: 10px 30px;
+    background: white;
+    color: #3b96e1;
+}
+.home-counts {
+    margin-top: 60px;
+    width: 80%;
+    display: flex;
+    gap: 90px;
+}
+.counts-home-card {
+    color: white;
+}
+.counts-home-card h2 {
+    font-size: 1.6rem;
+}
+.counts-home-card p {
+    margin-top: -10px;
+}
+@media (max-width: 575.98px) {
+    .home-conatents {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .home-p {
+        width: 100%;
+    }
+    .home-image-left {
+        width: 100%;
+    }
+    .home-span {
+        width: 100%;
+    }
+    .home-counts {
+        width: 100%;
+    }
+    .counts-home-card {
+        text-align: center;
+    }
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%); 
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .home-image-left {
+    animation: slideInFromRight 1s ease-out forwards; 
+  }
