@@ -4,6 +4,7 @@ import './appliedjob.css';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AppliedJobContext } from '../../../context/candidateContext/AppliedJobContext';
 import { Helmet } from 'react-helmet';
+import { initGA, trackEvent } from "../../../analytics";
 const AppliedJob = () => {
     const {
         fetch_applied_job,
@@ -82,6 +83,11 @@ const AppliedJob = () => {
             setSelectedValue('All');
         };
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Applied  Job", "BoardSearch Candidate");
+      }, []);
     return (
         <div className="applied-job">
             <Helmet>
@@ -115,7 +121,7 @@ const AppliedJob = () => {
                                 <option value="All">All</option>
 
                                 <option value="ApplicationSend">
-                                    Application Send
+                                    Application Sent
                                 </option>
                                 <option value="ApplicationShortlist">
                                     Application Shortlisted

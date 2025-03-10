@@ -65,7 +65,13 @@ function EditPersonalForm() {
             const user_id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_personal/${user_id}`
+                    `${BaseUrl}candidate/profile/get_personal/${user_id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 const {
@@ -126,7 +132,13 @@ function EditPersonalForm() {
             try {
                 const response = await axios.post(
                     `${BaseUrl}candidate/profile/aadhar_verification/verify`,
-                    { aadhar_number }
+                    { aadhar_number },
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 if (response?.status == 200 || response?.status == 201) {
@@ -153,7 +165,13 @@ function EditPersonalForm() {
             try {
                 const response = await axios.post(
                     `${BaseUrl}candidate/aadhar_otp/${user_id}`,
-                    { ref_id, otp, aadhar_number }
+                    { ref_id, otp, aadhar_number },
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     toast.success(`Aadhar verified successfully`);
@@ -184,7 +202,13 @@ function EditPersonalForm() {
                         {
                             PAN,
                             name
-                        }
+                        },
+                        {
+                            headers: {
+                                authorization: `Bearer ${token}`
+        
+                            }
+                        } 
                     );
                     if (response?.status == 200 || response?.status == 201) {
                         toast.success('Pan Verifed Successfully');

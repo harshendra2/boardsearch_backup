@@ -94,9 +94,17 @@ const Longlist = () => {
     ) => {
         const jobid = localStorage.getItem('job_id');
         try {
+            
+const token = localStorage.getItem('companyToken');
             const response = await axios.put(
                 `${BaseUrl}company/change_status/interview_round/${jobid}/${user_id}`,
-                { interviewRound, status }
+                { interviewRound, status },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             if (response.status == 200 || 201) {
                 fetch_Job_Longlist();

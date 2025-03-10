@@ -23,7 +23,7 @@ import BaseUrl from '../../../services/BaseUrl';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import { initGA, trackEvent } from "../../../analytics";
 const HireCandidate = () => {
     const {
         appliedcandidate,
@@ -207,7 +207,13 @@ const HireCandidate = () => {
 
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_appliedcandidate/${companyId}/${currentPage}/${50}`
+                `${BaseUrl}company/get_appliedcandidate/${companyId}/${currentPage}/${50}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             const newCandidates = response.data?.data;
             setappliedcandidate(prevCandidates => [
@@ -244,6 +250,11 @@ const HireCandidate = () => {
             setCurrentPage(1);
         };
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Hire Candidate", "BoardSearch Company");
+      }, []);
 
     return (
         <div className="hire-candidate">
@@ -431,7 +442,9 @@ const HireCandidate = () => {
                                     </div>
                                     <div className="result-text">
                                         <h4>
-                                            {candidate?.basicDetails[0]?.name}
+                                        {candidate?.basicDetails?.[0]?.name&&candidate?.basicDetails?.[0]?.name.length >25
+    ? candidate.basicDetails[0].name.substring(0,25) + "..."
+    : candidate?.basicDetails?.[0]?.name}
 
                                             {/* Tool-tip componet */}
                                             {/* {candidate?.personalDetails[0]
@@ -467,11 +480,13 @@ const HireCandidate = () => {
                                             {/* ) : null} */}
                                         </h4>
                                         <p>
-                                            {
-                                                candidate?.workDetails[0]
-                                                    ?.aspiring_position
-                                            }
-                                        </p>
+  
+
+{candidate?.workDetails?.[0]?.aspiring_position&&candidate?.workDetails?.[0]?.aspiring_position.length >45
+    ? candidate?.workDetails?.[0]?.aspiring_position.substring(0,40) + "..."
+    :candidate?.workDetails?.[0]?.aspiring_position}
+</p>
+
                                     </div>
                                 </div>
                                 <div className="right-">

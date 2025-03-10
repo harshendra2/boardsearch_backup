@@ -17,6 +17,7 @@ import { CandidateProfileContext } from '../../../../context/candidateContext/Ca
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BaseUrl from '../../../../services/BaseUrl';
+import AIBaseUrl from '../../../../services/AI_BaseUrl';
 const Resume = () => {
     const {id}=useParams();
     
@@ -37,7 +38,7 @@ const Resume = () => {
         try {
             setLoading(true);
             const response = await axios.post(
-                'https://boardsearch.ai/pythonapi/generate_resume',
+                `${AIBaseUrl}pythonapi/generate_resume`,
                 {
                     custom_id: custom_id
                 }
@@ -73,7 +74,14 @@ const Resume = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.put(
-                    `${BaseUrl}candidate/resume_generate/count/${userId}`
+                    `${BaseUrl}candidate/resume_generate/count/${userId}`,
+                    {},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
             } catch (error) {}
         }
@@ -88,7 +96,7 @@ const Resume = () => {
             try {
                 setLoading(true);
                 const response = await axios.post(
-                    'https://boardsearch.ai/pythonapi/generate_resume',
+                      `${AIBaseUrl}pythonapi/generate_resume`,
                     {
                         custom_id: custom_id,
                         discriptions_data: description
@@ -119,7 +127,7 @@ const Resume = () => {
     
         const base64Content = btoa(resume);
         try {
-            let response = await axios.post('https://boardsearch.ai/pythonapi/generate-pdf', {
+            let response = await axios.post(`${AIBaseUrl}pythonapi/generate-pdf`, {
                 html_base64: base64Content
             });
             if (response?.data?.pdf_base64) { 
@@ -163,7 +171,13 @@ const Resume = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/resume_generate/sub_count/${userId}`
+                    `${BaseUrl}candidate/resume_generate/sub_count/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 if (response?.status == 200 || response?.status == 201) {
@@ -181,18 +195,31 @@ const Resume = () => {
             const userId = decodedToken?._id;
         const base64Content = btoa(resume);
         try{
-        let response=await axios.post('https://boardsearch.ai/pythonapi/generate-pdf',
+        let response=await axios.post(`${AIBaseUrl}pythonapi/generate-pdf`,
             {html_base64:base64Content}
         );
         if(response.status==200||response.status==201){
              const res= await axios.put(
                     `${BaseUrl}candidate/stor/resume/${userId}`,
-                    {resume:response?.data}
+                    {resume:response?.data},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 if (res?.status == 200 ||res?.status == 201) {
                     const response = await axios.post(
-                        `${BaseUrl}candidate/jobapply_resume/${userId}/${id}`
+                        `${BaseUrl}candidate/jobapply_resume/${userId}/${id}`,
+                        {},
+                        {
+                            headers: {
+                                authorization: `Bearer ${token}`
+        
+                            }
+                        } 
                     );
                     if (response.status == 200 || 201) {
                         toast.success('Job Applied successfully ');

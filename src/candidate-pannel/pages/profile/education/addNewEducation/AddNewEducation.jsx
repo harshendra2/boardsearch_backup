@@ -56,7 +56,13 @@ function AddNewEducation() {
         try {
             const response = await axios.put(
                 `${BaseUrl}candidate/profile/add_education/${user_Id}`,
-                formData
+                formData,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response?.status === 200 || response?.status === 201) {
                 toast.success('Education details added successfully');

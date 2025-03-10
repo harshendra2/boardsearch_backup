@@ -177,8 +177,8 @@ const CandidateSupport = () => {
             </Modal>
 
             <div className="support mt-2">
-                <Row>
                     <div className="Search-support">
+                    <div className="top-row">
                         <OverlayTrigger placement="bottom" overlay={AddIssue}>
                             <Button
                                 size="sm"
@@ -198,8 +198,9 @@ const CandidateSupport = () => {
                                 onChange={e => SetSeacrhInput(e.target.value)}
                             />
                         </div>
-                        <Row style={{paddingLeft:'24px'}}>
-                        <Col xs="auto" className="p-0 mb-2">
+                        </div>
+                        <Row className="toggle-btn">
+                                    <Col xs="auto" className="p-0 mb-2">
                         <button
                             style={{
                                 borderRadius: '20px 0 0 20px',
@@ -251,10 +252,6 @@ const CandidateSupport = () => {
                     </Col>
                         </Row>
                     </div>
-
-                  
-
-                </Row>
                 <Row className="mt-2">
     <Table
         bordered

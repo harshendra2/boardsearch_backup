@@ -46,7 +46,13 @@ const ProfileCompletionModal = ({ onClose, setShowModal }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}/candidate/profile/percentage/${userId}`
+                    `${BaseUrl}/candidate/profile/percentage/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 SetProfileCompletion(response?.data);
             } catch (error) {}
@@ -54,7 +60,7 @@ const ProfileCompletionModal = ({ onClose, setShowModal }) => {
     };
 
     const handleClose = () => {
-        navigate('/profile-candidate/my-detials');
+        navigate('/profile-candidate/my-details');
         setShowModal(false);
     };
     useEffect(() => {

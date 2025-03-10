@@ -78,9 +78,9 @@ const CompanyMailTickets = () => {
         >
             <SendMail />
         </Modal>
-        <div className="support">
-            <Row>
-                <div className="Search-support">
+        <div className="support mt-2">
+    <div className="Search-support">
+    <div className="top-row">
                     <OverlayTrigger placement="bottom" overlay={SendMails}>
                         <Button
                             size="sm"
@@ -99,7 +99,8 @@ const CompanyMailTickets = () => {
                             onChange={e => SetSeacrhInput(e.target.value)}
                         />
                     </div>
-                    <Row style={{ paddingLeft: '24px' }}>
+                    </div>
+                    <Row className="toggle-btn">
                         <Col xs="auto" className="p-0 mb-2">
                             <button
                                 style={{
@@ -152,7 +153,6 @@ const CompanyMailTickets = () => {
                         </Col>
                     </Row>
                 </div>
-            </Row>
     
             <Row className="mt-2">
                 <Table striped bordered responsive className="custom-table">

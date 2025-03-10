@@ -43,9 +43,16 @@ const ViewJobDescription = () => {
     const handleReport = () => {};
 
     const getSingleJobDetails = async () => {
+        const token = localStorage.getItem('Candidate_token');
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/getjobdetails/${id}`
+                `${BaseUrl}candidate/getjobdetails/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
 
             setJobdata(response?.data);
@@ -106,6 +113,10 @@ const ViewJobDescription = () => {
       }
   
     const ApplyWithAIResume=async()=>{
+        if (CandidateProfile?.profileCompletionPercentage != 100) {
+            setShowModal(true);
+            return;
+        }
       navigate(`/profile-candidate/resume/${applyId}`)
     }
   
@@ -726,6 +737,7 @@ const ViewJobDescription = () => {
             {showModal && (
                 <ProfileCompletionModal
                     onClose={() => setShowModal(false)} // Close modal handler
+                    setShowModal={setShowModal}
                 />
             )}
         </>

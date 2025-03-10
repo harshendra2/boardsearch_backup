@@ -266,7 +266,7 @@ const CompanyRegistration = () => {
                                 </div>
                                 <div className="btn-div-2">
                                     <button onClick={hnadleNaviagte}>
-                                        back
+                                        BACK
                                     </button>
                                 </div>
                             </Row>

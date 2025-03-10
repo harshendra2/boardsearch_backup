@@ -17,6 +17,7 @@ import profileimg from '../../../assets/images/profileimg.png';
 import EditCompanyProfile from './editProfile/EditCompanyProfile';
 import ProfileComplete from '../../../components/dynamicProgress/ProfileComplete';
 import { Helmet } from 'react-helmet';
+import { initGA, trackEvent } from "../../../analytics";
 
 const Profile = () => {
     const { profileData,setProfileData, fetchProfileData, lgShow, setLgShow} = useProfileData();
@@ -88,6 +89,11 @@ const Profile = () => {
             return input;
         }
     }
+
+    useEffect(() => {
+        initGA();  
+        trackEvent("Button", "Dashboard", "BoardSearch Company");
+      }, []);
     return (
         <>
             <Helmet>

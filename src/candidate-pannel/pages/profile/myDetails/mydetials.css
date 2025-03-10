@@ -127,3 +127,12 @@
 .calender {
     cursor: pointer;
 }
+.Personal_details_key{
+    width:30%
+}
+
+@media (max-width:550px) {
+    .Personal_details_key{
+        width: 54%
+    }
+}

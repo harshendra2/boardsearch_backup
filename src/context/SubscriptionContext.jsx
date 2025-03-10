@@ -30,7 +30,13 @@ export const SubscriptionProvider = ({ children }) => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}/company/get_allsubscription/${companyId}`
+                `${BaseUrl}/company/get_allsubscription/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             SetsubscriptionData(response?.data);
             if (response?.status == 200) {
@@ -45,7 +51,13 @@ export const SubscriptionProvider = ({ children }) => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_topup_plane/${companyId}`
+                `${BaseUrl}company/get_topup_plane/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             SettopUpData(response?.data);
         } catch (error) {}
@@ -59,7 +71,13 @@ export const SubscriptionProvider = ({ children }) => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_earlysubcription/${companyId}`
+                `${BaseUrl}company/get_earlysubcription/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             SetEarlyData(response?.data);
             if (response?.status == 200) {
@@ -80,7 +98,14 @@ export const SubscriptionProvider = ({ children }) => {
             const response = await axios.post(`${BaseUrl}/company/payment`, {
                 id,
                 sub_id
-            });
+            },
+            {
+                headers: {
+                    authorization: `Bearer ${token}`
+
+                }
+            }
+        );
 
             if (response.status == 200 || response?.status == 201) {
                 SetpaymentLoading(true);
@@ -115,7 +140,14 @@ export const SubscriptionProvider = ({ children }) => {
                 subscriptionId: datapayment?.subscription_id,
                 companyId: companyId,
                 paymentMethod: datapayment?.payment_methods
-            });
+            },
+            {
+                headers: {
+                    authorization: `Bearer ${token}`
+
+                }
+            }
+        );
 
             if (response?.status === 200 || response?.status === 201) {
                 SetSubId(response.data?.orderId);
@@ -157,6 +189,12 @@ export const SubscriptionProvider = ({ children }) => {
                 {
                     company_id,
                     topup_id
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+    
+                    }
                 }
             );
             if (response.status === 200) {
@@ -187,6 +225,12 @@ export const SubscriptionProvider = ({ children }) => {
                     topupId: top_up_data?.topupId,
                     companyId: companyId,
                     paymentMethod: top_up_data?.payment_methods
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+    
+                    }
                 }
             );
             if (response?.status === 200 || response?.status === 201) {
@@ -227,7 +271,13 @@ export const SubscriptionProvider = ({ children }) => {
             const companyId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get_renewplane/${companyId}`
+                    `${BaseUrl}company/get_renewplane/${companyId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+        
+                        }
+                    }
                 );
                 SetRenewData(response?.data);
                 if (response?.status == 200) {

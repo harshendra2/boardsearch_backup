@@ -36,7 +36,13 @@ export const CreateJobProvider = ({ children }) => {
 
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/job_status/${companyId}`
+                    `${BaseUrl}company/job_status/${companyId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setJob_status(response?.data);
             } catch (error) {}
@@ -44,9 +50,17 @@ export const CreateJobProvider = ({ children }) => {
     };
 
     const stop_restar_job = async job_id => {
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.put(
-                `${BaseUrl}company/job_Restart/${job_id}`
+                `${BaseUrl}company/job_Restart/${job_id}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status === 200) {
                 await fetch_job_status();
@@ -58,9 +72,17 @@ export const CreateJobProvider = ({ children }) => {
     };
     // Delete Job in Create Jon module
     const delete_job_status = async cmp_id => {
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.delete(
-                `${BaseUrl}company/Job_post/${cmp_id}`
+                `${BaseUrl}company/Job_post/${cmp_id}`,
+                {
+                    data:{},
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status === 200) {
                 await fetch_job_status();
@@ -73,10 +95,16 @@ export const CreateJobProvider = ({ children }) => {
 
     const viewJobDescription = async job_id => {
         const jobid = localStorage.getItem('job_id');
-
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/view_job/${jobid}`
+                `${BaseUrl}company/view_job/${jobid}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             setviewJobDesciption(response?.data);
         } catch (error) {}
@@ -84,10 +112,16 @@ export const CreateJobProvider = ({ children }) => {
 
     const fetch_Job_applicant = async () => {
         const jobid = localStorage.getItem('job_id');
-
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/listout_applicant/${jobid}`
+                `${BaseUrl}company/listout_applicant/${jobid}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setapplicantData(response?.data);
         } catch (error) {}
@@ -95,9 +129,16 @@ export const CreateJobProvider = ({ children }) => {
 
     const fetch_Job_Longlist = async () => {
         const jobid = localStorage.getItem('job_id');
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/interview_round/Candidate/${jobid}`
+                `${BaseUrl}company/interview_round/Candidate/${jobid}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             SetlonglistData(response?.data);
         } catch (error) {}
@@ -105,9 +146,17 @@ export const CreateJobProvider = ({ children }) => {
 
     const shortlis_candidate = async user_id => {
         const jobid = localStorage.getItem('job_id');
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.put(
-                `${BaseUrl}company/long_list/candidate/${jobid}/${user_id}`
+                `${BaseUrl}company/long_list/candidate/${jobid}/${user_id}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             if (response?.status == 200) {
                 await fetch_Job_applicant();
@@ -118,9 +167,16 @@ export const CreateJobProvider = ({ children }) => {
 
     const fetch_shortlist = async () => {
         const jobid = localStorage.getItem('job_id');
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/shortlist_applicant/${jobid}`
+                `${BaseUrl}company/shortlist_applicant/${jobid}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setShortlistData(response?.data);
         } catch (error) {}
@@ -129,10 +185,16 @@ export const CreateJobProvider = ({ children }) => {
     const fetch_hire_candidate = async () => {
         const hired_id = localStorage.getItem('hired');
         const jobid = localStorage.getItem('job_id');
-
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_user_detail/hire/${jobid}/${hired_id}`
+                `${BaseUrl}company/get_user_detail/hire/${jobid}/${hired_id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             sethiredCandidateData(response?.data[0]);
         } catch (error) {}
@@ -140,12 +202,18 @@ export const CreateJobProvider = ({ children }) => {
 
     const handle_feedback = async (feedback, user_id) => {
         const jobid = localStorage.getItem('job_id');
-
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.put(
                 `${BaseUrl}company/add_feedback/${jobid}/${user_id}`,
                 {
                     feedback
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status == 200) {
@@ -161,9 +229,16 @@ export const CreateJobProvider = ({ children }) => {
     const get_job_offered = async () => {
         const jobid = localStorage.getItem('job_id');
         const user_id = localStorage.getItem('getJobofferId');
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_user_offer/${jobid}/${user_id}`
+                `${BaseUrl}company/get_user_offer/${jobid}/${user_id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setjob_offered(response?.data[0]);
         } catch (error) {}
@@ -184,6 +259,12 @@ export const CreateJobProvider = ({ children }) => {
                 `${BaseUrl}company/promote_job/payment`,
                 {
                     company_id
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status === 200) {
@@ -227,6 +308,12 @@ export const CreateJobProvider = ({ children }) => {
                     skills: formData?.skills,
                     education: formData?.education,
                     description: formData?.description
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response?.status == 200 || response?.status == 201) {

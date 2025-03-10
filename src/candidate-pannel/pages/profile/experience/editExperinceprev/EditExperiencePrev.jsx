@@ -231,7 +231,7 @@ const EditExperiencePrev = () => {
                             name="location_type"
                             value={expData?.location_type}
                             onChange={e => handleInputChange(e)}
-                            placeholder="Enter "
+                             placeholder="Ex: Rural, Urban"
                             style={{
                                 marginTop: '-6px',
                                 fontSize: '0.8rem',

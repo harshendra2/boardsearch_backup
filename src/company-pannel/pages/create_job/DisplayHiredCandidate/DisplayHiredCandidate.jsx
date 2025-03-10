@@ -40,7 +40,13 @@ const DisplayHiredCandidate = ({ onHide }) => {
         const company_id = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/hired_job_status/${company_id}/${currentPage}/${selectValue}`
+                `${BaseUrl}company/hired_job_status/${company_id}/${currentPage}/${selectValue}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response?.status == 200 || response?.status == 201) {
                 setData(response?.data?.candidates);

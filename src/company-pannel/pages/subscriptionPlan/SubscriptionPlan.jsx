@@ -3,7 +3,7 @@ import './subscription.css';
 import { Button, Row } from 'react-bootstrap';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const SubscriptionPlan = () => {
     const [activeButton, setActiveButton] = useState('subscription');
     const naviagte = useNavigate();
@@ -42,6 +42,12 @@ const SubscriptionPlan = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Subscription", "BoardSearch Company");
+      }, []);
+      
     return (
         <div className="sub-scription">
               <Helmet>

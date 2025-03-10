@@ -63,7 +63,13 @@ export const HireCandidateProvider = ({ children }) => {
         }
         try {
             const response = await axios.get(
-                `${BaseUrl}company/subscription_count_status/${companyId}`
+                `${BaseUrl}company/subscription_count_status/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
 
             setSubscription_Data(response?.data?.subscriptionData);
@@ -91,8 +97,12 @@ export const HireCandidateProvider = ({ children }) => {
                 `${BaseUrl}company/download_email/${companyId}`,
                 { selectedCandidates },
                 {
-                    responseType: 'blob' // Important to get the file as a blob
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    },
+                    responseType: 'blob' // Must be inside the Axios config object
                 }
+                
             );
 
             // Create URL and trigger download
@@ -130,7 +140,10 @@ export const HireCandidateProvider = ({ children }) => {
                 `${BaseUrl}company/download_resume/${companyId}`,
                 { selectedCandidates },
                 {
-                    responseType: 'blob' // Important: this tells axios to expect a binary file
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    },
+                    responseType: 'blob' // Must be inside the Axios config object
                 }
             );
             if (response.status === 200) {
@@ -157,7 +170,13 @@ export const HireCandidateProvider = ({ children }) => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_candidatedetails/${id}/${companyId}`
+                `${BaseUrl}company/get_candidatedetails/${id}/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
 
             set_candidate_detials(response?.data);
@@ -177,6 +196,12 @@ export const HireCandidateProvider = ({ children }) => {
                     search: seachBarData.search,
                     experience: seachBarData.experience,
                     location: seachBarData.location
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status == 200) {
@@ -197,9 +222,16 @@ export const HireCandidateProvider = ({ children }) => {
     };
 
     async function CompanyProfile(id) {
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/profile/details/${id}`
+                `${BaseUrl}company/profile/details/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             if (response.status === 200) {
                 SetIdentity(response?.data.company_name);

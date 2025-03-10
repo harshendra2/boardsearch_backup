@@ -201,7 +201,7 @@
     .download-email {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
     }
     .download-btn {
         width: 160px;
@@ -228,3 +228,5 @@
         width: auto;
     }
 }
+
+

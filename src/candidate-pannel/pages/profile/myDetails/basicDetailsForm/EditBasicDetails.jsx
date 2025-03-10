@@ -128,7 +128,13 @@ const EditBasicDetails = () => {
             try {
                 const response = await axios.put(
                     `${BaseUrl}candidate/profile/edit_basic/${user_id}`,
-                    combinedData
+                    combinedData,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     await fetchCandidateProfile();
@@ -169,7 +175,13 @@ const EditBasicDetails = () => {
             const id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_basic/${id}`
+                    `${BaseUrl}candidate/profile/get_basic/${id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 const { email, mobile, linkedIn, name, contact_email } =
@@ -343,7 +355,7 @@ const EditBasicDetails = () => {
           onChange={handlePhoneChange}
           inputComponent={CustomInput} // Use custom input component
         />
-         {!isValid && <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Phone is not valid</div>}
+         {!isValid &&formData.mobile&&formData.mobile.length>6&& <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Phone is not valid</div>}
                     </Form.Group>
 
                     <Form.Group controlId="profile" className="mt-3">

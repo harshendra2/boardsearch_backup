@@ -3,54 +3,75 @@
     height: 100vh;
     margin-left: 10px;
 }
+
+.Search-support {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 19px; /* Adds spacing between elements */
+}
+
+.top-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1; /* Allows the top row to take available space */
+}
+
 .search-bar-suport {
     background: #f8f8f8;
     border-radius: 8px;
-    height: 36px;
-    width: 67%;
-    margin-left: 14px;
+    height: 35px;
+    flex: 1; /* Allows the search bar to take remaining space */
     box-shadow: 0px 0px 4px 0px rgb(147, 147, 147);
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
 }
+
 .search-bar-suport input {
-    background: rgba(255, 255, 255, 0);
+    background: transparent;
     color: black;
     outline: none;
     border: none;
     padding: 5px;
-    width: 90%;
+    width: 100%;
     margin-left: 4px;
 }
+
 .search-bar-suport img {
     margin-left: 6px;
 }
-.Search-support {
-    display: flex;
-}
+
 .add-issue-btn {
     width: 120px;
     height: 36px;
     background: #3b96e1;
 }
-.showchat-div {
+
+.toggle-btn {
+    display: flex;
+    gap: 0; 
+    margin-top: 8px;
 }
 
-.add-modal-width {
-    max-width: 700px; /* Set max width */
-    width: 350px; /* Adjust width */
-}
+/* Mobile Responsiveness */
 @media (max-width: 575.98px) {
     .Search-support {
-        flex-wrap: wrap;
-    }
-    .search-bar-suport input {
-        width: auto;
-    }
-    .add-issue-btn {
-        width: 100%;
-        margin-bottom: 10px;
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .support {
-        margin-left: 0px;
+    .top-row {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .search-bar-suport {
+        width: 100%;
+    }
+
+    .toggle-btn {
+        margin-top:-8px
     }
 }

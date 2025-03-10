@@ -63,7 +63,13 @@ export const CandidateProfileProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_single/exp/${userId}/${exp_id}`
+                    `${BaseUrl}candidate/profile/get_single/exp/${userId}/${exp_id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 setEdit_ExpData(response?.data);
                 const fetchedData = response?.data;
@@ -77,7 +83,7 @@ export const CandidateProfileProvider = ({ children }) => {
                         fetchedData?.current_workingStatus || false,
                     designation: fetchedData?.designation,
                     location: fetchedData?.location,
-                    location_type: fetchedData?.location,
+                    location_type: fetchedData?.location_type,
                     negotiation_day: fetchedData?.negotiation_day,
                     notice_period: fetchedData?.notice_period,
                     reporting_structure: fetchedData?.reporting_structure,
@@ -99,7 +105,13 @@ export const CandidateProfileProvider = ({ children }) => {
             try {
                 const response = await axios.put(
                     `${BaseUrl}/candidate/profile/edit_exp/${userId}/${exp_id}`,
-                    expData
+                    expData,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     toast.success('Experience Edited ');
@@ -150,7 +162,13 @@ export const CandidateProfileProvider = ({ children }) => {
             const id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/${id}`
+                    `${BaseUrl}candidate/profile/${id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 setCandidateProfile(response?.data);
             } catch (error) {}
@@ -167,7 +185,13 @@ export const CandidateProfileProvider = ({ children }) => {
             const id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_basic/${id}`
+                    `${BaseUrl}candidate/profile/get_basic/${id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 setmyDetails(response?.data);
             } catch (error) {}
@@ -182,7 +206,13 @@ export const CandidateProfileProvider = ({ children }) => {
             const response = await axios.put(
                 `${BaseUrl}candidate/profile/edit_personal/${user_id}`,
 
-                data
+                data,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             if (response?.status == 200 || response?.status == 201) {
                 toast.success('Personal details edited successfully');
@@ -240,7 +270,13 @@ export const CandidateProfileProvider = ({ children }) => {
             const user_id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_single/project/${user_id}/${project_id}`
+                    `${BaseUrl}candidate/profile/get_single/project/${user_id}/${project_id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 const fetchedData = response?.data;
                 const data = extractNumbers(fetchedData?.Project_duration);
@@ -289,10 +325,10 @@ export const CandidateProfileProvider = ({ children }) => {
                     Project_duration,
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`, // Pass token in the Authorization header
+                            authorization: `Bearer ${token}`, // Pass token in the Authorization header
                             'Content-Type': 'application/json' // Set content type
                         }
-                    }
+                    } 
                 );
                 if (response.status == 200 || response.status == 201) {
                     toast.success('Project Data Updated Successfully');
@@ -311,7 +347,14 @@ export const CandidateProfileProvider = ({ children }) => {
             const user_id = decodedToken?._id;
             try {
                 const response = await axios.delete(
-                    `${BaseUrl}candidate/profile/delete_projects/${project_id}/${user_id}`
+                    `${BaseUrl}candidate/profile/delete_projects/${project_id}/${user_id}`,
+                    {
+                        data: {},  
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || response.status == 201) {
                     toast.success('Project Data Deleted Successfully');

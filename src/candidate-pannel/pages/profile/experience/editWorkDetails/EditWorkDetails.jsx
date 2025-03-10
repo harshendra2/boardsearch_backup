@@ -28,6 +28,13 @@ const EditWorkDetails = () => {
     });
 
     const handleFileChange = e => {
+        const maxSize = 2 * 1024 * 1024; 
+      let file=e.target.files[0]
+    if (file && file.size > maxSize) {
+        toast.error("File size exceeds 2MB. Please choose a smaller file.")
+        e.target.value = "";
+        return;
+    }
         setResumeFile(e.target.files[0]); // Capture the uploaded file
     };
 
@@ -55,7 +62,13 @@ const EditWorkDetails = () => {
             const user_id = decodedToken?._id;
             try {
                 let response = await axios.get(
-                    `${BaseUrl}candidate/profile/get_work/${user_id}`
+                    `${BaseUrl}candidate/profile/get_work/${user_id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 const workdetails = response?.data;
@@ -99,7 +112,13 @@ const EditWorkDetails = () => {
             try {
                 const response = await axios.put(
                     `${BaseUrl}candidate/profile/edit_work/${user_id}`,
-                    formData
+                    formData,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     toast.success('Work details updated successfully');
@@ -394,6 +413,7 @@ const EditWorkDetails = () => {
                         <Form.Control
                             type="file"
                             ref={resumeRef}
+                           accept=".pdf,.doc,.docx"
                             onChange={handleFileChange}
                             style={{ display: 'none' }}
                         />

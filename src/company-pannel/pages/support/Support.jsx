@@ -21,7 +21,7 @@ import { Helmet } from 'react-helmet';
 //const socket=io('http://localhost:4000');
 //const socket = io('http://65.20.91.47:4000');
 const socket=io('https://boardsearch.ai')
-
+import { initGA, trackEvent } from "../../../analytics";
 const Support = () => {
     const {
         fetch_all_issue,
@@ -144,6 +144,11 @@ const Support = () => {
         setActiveButton(buttonName === activeButton ? '' : buttonName);
     };
 
+    useEffect(() => {
+        initGA(); 
+        trackEvent("Button","Support", "BoardSearch Company");
+      }, []);
+
     return (
         <>
         <Helmet>
@@ -171,9 +176,9 @@ const Support = () => {
         >
             <SendMail />
         </Modal>
-        <div className="support">
-            <Row>
-                <div className="Search-support">
+        <div className="support mt-2">
+        <div className="Search-support">
+        <div className="top-row">
                     <OverlayTrigger placement="bottom" overlay={AddIssue}>
                         <Button
                             size="sm"
@@ -192,8 +197,9 @@ const Support = () => {
                             onChange={e => SetSeacrhInput(e.target.value)}
                         />
                     </div>
+                    </div>
     
-                    <Row style={{ paddingLeft: '24px' }}>
+                    <Row className="toggle-btn">
                         <Col xs="auto" className="p-0 mb-2">
                             <button
                                 style={{
@@ -246,7 +252,6 @@ const Support = () => {
                         </Col>
                     </Row>
                 </div>
-            </Row>
     
             <Row
                 className="mt-2"

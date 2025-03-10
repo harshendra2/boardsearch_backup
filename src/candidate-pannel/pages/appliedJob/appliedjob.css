@@ -1,6 +1,6 @@
 .applied-btns {
     background: rgb(255, 255, 255);
-    width: 360px;
+    width: 340px;
     display: flex;
     justify-content: space-between;
     padding: 6px;
@@ -272,7 +272,7 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 16rem;
+    /* margin-left: 16rem; */
     height: 60vh;
     text-align: center;
     font-size: 2rem;
@@ -282,6 +282,30 @@ h4 {
 }
 
 .no-jobs-container span {
+    padding: 20px;
+    border: 2px solid #3b96e1;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #3b96e1;
+}
+
+
+.no-jobs-containerss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:20%;
+    margin-right: 20%;
+    height: 60vh;
+    text-align: center;
+    font-size: 2rem;
+    color: #555;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.no-jobs-containerss span {
     padding: 20px;
     border: 2px solid #3b96e1;
     border-radius: 8px;
@@ -311,4 +335,16 @@ h4 {
         margin-left: 10rem;
         font-size: 0.8rem;
     }
+}
+
+
+
+
+@media (min-width:300px) and (max-width:736px) {
+    .no-jobs-containerss {
+       
+        margin-left:5%;
+        margin-right: 5%;        
+    }
+   
 }

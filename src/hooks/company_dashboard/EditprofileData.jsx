@@ -50,6 +50,7 @@ const EditprofileData = url => {
                 formData,
                 {
                     headers: {
+                        authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
                     }
                 }
@@ -82,6 +83,7 @@ const EditprofileData = url => {
                 `${BaseUrl}company/get/saved/data/${companyId}`,
                 {
                     headers: {
+                        authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
                     }
                 }

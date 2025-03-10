@@ -41,6 +41,12 @@ const Renew = () => {
                 {
                     company_id,
                     subscription_id
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status === 200) {
@@ -70,6 +76,12 @@ let ToptimeoutId;
                     subscription_id: data?.subscription_id,
                     company_id: companyId,
                     paymentMethod:data?.payment_methods
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response?.status === 200 || response?.status === 201) {

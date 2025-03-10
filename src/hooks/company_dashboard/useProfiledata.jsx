@@ -32,7 +32,14 @@ const useProfileData = (userId) => {
                 throw new Error('Invalid token');
             }
             
-            const response = await axios.get(`${BaseUrl}company/profile/${companyId}`);
+            const response = await axios.get(`${BaseUrl}company/profile/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
+            );
             setProfileData(response.data); // Store data in state
         } catch (err) {
             setError(err.message || 'Failed to fetch profile data');
@@ -77,6 +84,7 @@ const useProfileData = (userId) => {
                 formData,
                 {
                     headers: {
+                        authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data',
                     },
                 }
@@ -109,6 +117,7 @@ const useProfileData = (userId) => {
 
             const response = await axios.get(`${BaseUrl}company/get/saved/data/${companyId}`, {
                 headers: {
+                    authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             });

@@ -75,6 +75,13 @@ const EditCompanyProfile = ({ setLgShow }) => {
     };
     const handleImageUpload = event => {
         const file = event.target.files[0];
+        const maxSize = 1 * 1024 * 1024; // 1MB limit
+
+    if (file && file.size > maxSize) {
+        toast.error("File size exceeds 1MB. Please choose a smaller file.")
+        event.target.value = ""; // Clear the file input
+        return;
+    }
 
         if (file) {
             const imageUrl = URL.createObjectURL(file);
@@ -93,6 +100,13 @@ const EditCompanyProfile = ({ setLgShow }) => {
     };
     const handleImageUploadPan = event => {
         const file = event.target.files[0];
+        const maxSize = 1 * 1024 * 1024; // 1MB limit
+
+    if (file && file.size > maxSize) {
+        toast.error("File size exceeds 1MB. Please choose a smaller file.")
+        event.target.value = ""; // Clear the file input
+        return;
+    }
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             Setpan(file);
@@ -240,7 +254,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
             </Col>
             <Col xs={12} md={4}>
                 <Form.Label className="custom-input-group-label">
-                    Mobile no <span className="text-danger">*</span>
+                    Mobile No <span className="text-danger">*</span>
                 </Form.Label>
                 <InputGroup
                     size="sm"
@@ -256,7 +270,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
                              onChange={handlePhoneChange}
                             
                             />
-                              {!isValidMobile && <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Mobile Number is not valid</div>}
+                              {!isValidMobile &&formFields?.mobile&&formFields?.mobile.length>6&& <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Mobile Number is not valid</div>}
                 </InputGroup>
             </Col>
         </Row>
@@ -301,7 +315,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
             </Col>
             <Col xs={12} md={4}>
                 <Form.Label className="custom-input-group-label">
-                    Contact no <span className="text-danger">*</span>
+                    Contact No <span className="text-danger">*</span>
                 </Form.Label>
                 <InputGroup
                     size="sm"
@@ -318,7 +332,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
                             
                             />
                             
-                              {!isValidContactnumber && <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Contact Number is not valid</div>}
+                              {!isValidContactnumber &&formFields.contact_No&&formFields.contact_No.length>6&& <div style={{ color: 'red',fontSize: '0.7rem',marginTop:'2px'}}>Contact Number is not valid</div>}
                 </InputGroup>
             </Col>
         </Row>
@@ -487,7 +501,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
                 ) : null}
                 <input
                     type="file"
-                    accept="image/*"
+                     accept="image/*,application/pdf"
                     id="fileInput"
                     style={{ display: 'none' }}
                     onChange={handleImageUpload}
@@ -556,7 +570,7 @@ const EditCompanyProfile = ({ setLgShow }) => {
                 ) : null}
                 <input
                     type="file"
-                    accept="image/*"
+                    accept="image/*,application/pdf"
                     id="fileInputpan"
                     style={{ display: 'none' }}
                     onChange={handleImageUploadPan}

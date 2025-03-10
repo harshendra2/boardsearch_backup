@@ -16,7 +16,13 @@ export const TransactionProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/transaction/${userId}`
+                    `${BaseUrl}candidate/transaction/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setTransactionData(response?.data);
             } catch (error) {}

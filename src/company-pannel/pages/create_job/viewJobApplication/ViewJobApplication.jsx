@@ -72,7 +72,7 @@ const ViewJobApplication = () => {
                     <div className="header-view">
                         <Row>
                             <div className="top-head">
-                                <p onClick={() => navigate('/main/create-job')}>
+                                <p style={{cursor:'pointer'}} onClick={() => navigate('/main/create-job')}>
                                     <img src={arrow_back} alt="" width="20px" />
                                 </p>
                                 <div className="cmp-img">
@@ -129,7 +129,7 @@ const ViewJobApplication = () => {
                                     <tr>
                                         <td style={{ paddingRight: '30px' }}>
                                             <span className="card-table-span">
-                                                Loction:
+                                                Location:
                                             </span>{' '}
                                         </td>
                                         <td>
@@ -250,6 +250,7 @@ const ViewJobApplication = () => {
                             {toogle && (
                                 <div
                                     className="job-discription"
+                                    style={{ marginTop: 0, paddingTop: 0 }}
                                     dangerouslySetInnerHTML={{
                                         __html: sanitizedDescription
                                     }}

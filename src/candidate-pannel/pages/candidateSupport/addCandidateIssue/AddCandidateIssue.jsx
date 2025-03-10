@@ -14,6 +14,7 @@ function AddCandidateIssue() {
     const { modalShow, setModalShow } = useContext(CandidateSupportContext);
     const [loading, setLoading] = useState(false);
     const [FileData, setFileData] = useState(null);
+    const [error, setError] = useState('');
     const [formData, setFormData] = useState({
         Issue_type: '',
         description: '',
@@ -33,12 +34,20 @@ function AddCandidateIssue() {
 
     // Handle file input changes
     const handleFileChange = e => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+          if (!selectedFile.type.startsWith('image/')) {
+            setError('Please upload an image file (e.g., JPEG, PNG).');
+            return;
+          }}
+
         setFormData({
             ...formData,
-            file: e.target.files[0] // Only select the first file if multiple files are selected
+            file: e.target.files[0]
         });
         const file = e.target.files[0];
         setFileData(file);
+        setError('')
     };
 
     // Handle form submission
@@ -74,7 +83,7 @@ function AddCandidateIssue() {
                 formDataToSend,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Send the token in headers
+                        authorization: `Bearer ${token}`, // Send the token in headers
                         'Content-Type': 'multipart/form-data' // Necessary for file uploads
                     }
                 }
@@ -179,7 +188,9 @@ function AddCandidateIssue() {
                                 ? FileData?.name
                                 : 'Upload a screenshot of the Issue'}
                         </p>
+                        
                     </div>
+                    {error && <p style={{ color: 'red',fontSize:'0.8rem'}}>{error}</p>}
 
                     <input
                         style={{ display: 'none' }}

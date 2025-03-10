@@ -23,7 +23,13 @@ const useDashboardData = url => {
             }
             try {
                 const response = await axios.get(
-                    `${BaseUrl}/company/dashboard_status/${companyId}`
+                    `${BaseUrl}/company/dashboard_status/${companyId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 setData(response.data);
                 setLoading(false);
@@ -49,7 +55,13 @@ const useDashboardData = url => {
         }
         try {
             const response = await axios.get(
-                `${BaseUrl}company/offer_verifier/${companyId}/${PAN}`
+                `${BaseUrl}company/offer_verifier/${companyId}/${PAN}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             if (response.status === 200) {
                 setverfifyOffer(response?.data?.message);

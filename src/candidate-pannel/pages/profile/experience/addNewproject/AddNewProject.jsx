@@ -102,7 +102,13 @@ const AddNewProject = () => {
         try {
             const response = await axios.put(
                 `${BaseUrl}candidate/profile/pojects/${userId}`, // Adjust the endpoint path if necessary
-                Project_duration // Send the data as JSON
+                Project_duration ,// Send the data as JSON,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status == 200 || response.status == 201) {
                 toast.success('Project Details Added Successfully');

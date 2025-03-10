@@ -24,7 +24,13 @@ export const SupportProvider = ({ children }) => {
             const companyId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get_issue/${companyId}`
+                    `${BaseUrl}company/get_issue/${companyId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+        
+                        }
+                    }
                 );
                 setData(response?.data);
             } catch (error) {}
@@ -41,7 +47,13 @@ export const SupportProvider = ({ children }) => {
             const companyId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get_mail_issue/${companyId}`
+                    `${BaseUrl}company/get_mail_issue/${companyId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+        
+                        }
+                    }
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     setMailData(response?.data);

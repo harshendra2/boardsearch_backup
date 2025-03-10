@@ -40,6 +40,12 @@ const EarlyBuy = () => {
                 {
                     company_id,
                     sub_id
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status === 200) {
@@ -70,6 +76,12 @@ const EarlyBuy = () => {
                     sub_id: data?.sub_id,
                     company_id: companyId,
                     paymentMethod: data?.payment_methods
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response?.status === 200 || response?.status === 201) {

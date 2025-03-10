@@ -48,7 +48,13 @@ export const AccessProvider = ({ children }) => {
             const Email=decodedToken?.email;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get/subadmin/${cmpId}/${Email}`
+                    `${BaseUrl}company/get/subadmin/${cmpId}/${Email}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setAccessData(response?.data);
                 if (response?.status == 200 || response?.status == 201) {
@@ -70,8 +76,13 @@ export const AccessProvider = ({ children }) => {
             try {
                 const response = await axios.post(
                     `${BaseUrl}company/add_hr/${cmpId}`,
-
-                    data
+                    data,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || response?.status == 201) {
                     toast.success('New HR Added Successfully ');
@@ -93,7 +104,14 @@ export const AccessProvider = ({ children }) => {
             const cmpId = decodedToken?._id;
             try {
                 const response = await axios.delete(
-                    `${BaseUrl}/company/delete_hr/${cmpId}/${email}`
+                    `${BaseUrl}/company/delete_hr/${cmpId}/${email}`,
+                    {
+                        data:{},
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || response?.status == 201) {
                     await getAllSubAdmin();
@@ -115,7 +133,13 @@ export const AccessProvider = ({ children }) => {
             const email = decodedToken?.email;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get/single_access/${cmpId}/${email}`
+                    `${BaseUrl}company/get/single_access/${cmpId}/${email}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 const fethedData = response?.data;
                 if (response?.status == 200 || response?.status == 201) {
@@ -146,7 +170,13 @@ export const AccessProvider = ({ children }) => {
 
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/get/single_access/${cmpId}/${email}`
+                    `${BaseUrl}company/get/single_access/${cmpId}/${email}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 const fethedData = response?.data;
                 if (response?.status == 200 || response?.status == 201) {
@@ -176,7 +206,13 @@ export const AccessProvider = ({ children }) => {
             try {
                 const response = await axios.put(
                     `${BaseUrl}company/edit_hr/responsibility/${cmpId}/${formData?.email}`,
-                    formData
+                    formData,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     await getAllSubAdmin();

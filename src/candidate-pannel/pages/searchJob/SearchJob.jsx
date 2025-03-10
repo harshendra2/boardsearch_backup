@@ -30,7 +30,7 @@ import { CandidateProfileContext } from '../../../context/candidateContext/Candi
 import { toast } from 'react-toastify';
 import ProfileCompletionModal from '../ProfileAlert/ProfileCompletion';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const SearchJob = () => {
     const {
         fetch_search_job,
@@ -106,7 +106,13 @@ const SearchJob = () => {
             try {
                 const response = await axios.post(
                     `${BaseUrl}candidate/job_search/${userId}/${currentPage}/${selectValue}/${JobLinkExist}`,
-                    SearchData
+                    SearchData,
+                    {
+                      headers: {
+                          authorization: `Bearer ${token}`
+  
+                      }
+                  } 
                 );
                 if (response?.status == 200 || response?.status == 201) {
                     let data = response?.data?.unappliedJobs;
@@ -176,6 +182,11 @@ const SearchJob = () => {
     }
 
   const ApplyWithAIResume=async()=>{
+    if (CandidateProfile?.profileCompletionPercentage != 100) {
+      setShowModal(true);
+      setShowConfirmation(false);
+      return;
+  }
     navigate(`/profile-candidate/resume/${applyId}`)
   }
 
@@ -256,6 +267,10 @@ useEffect(()=>{
     fetch_search_job()
 },[JobLinkExist])
 
+useEffect(() => {
+  initGA();  // Initialize Google Analytics
+  trackEvent("Button", "Search Jobs", "BoardSearch Candidate");
+}, []);
 
     return (
       <>
@@ -491,8 +506,8 @@ centered
                   />
                 </Button>
               </div>
-              <Row>
-                <Col className="d-flex" style={{ marginTop: "40px" }}>
+              {/* <Row> */}
+                <Col className="d-flex" style={{ marginTop: "40px",flexWrap:'wrap'}}>
                   <div class="search-select">
                     <select
                       name="experience"
@@ -559,7 +574,7 @@ centered
                       <option value="30">Last 30 days</option>
                     </select>
                   </div>
-                  <div className="search-inductiers">
+                  <div className="search-inductiers" style={{width:'155px'}}>
                     <input
                       name="industry"
                       value={SearchIcon.industry}
@@ -568,7 +583,7 @@ centered
                       placeholder="Industry(Software)"
                     />
                   </div>
-                  <div className="search-inductiers">
+                  <div className="search-inductiers" style={{width:'155px'}}>
                     <input
                       name="location"
                       value={SearchData.location}
@@ -596,11 +611,11 @@ centered
                         fontSize: "0.75rem",
                         fontWeight: "normal",
                         border:"1px solid #3b96e1",
-                        width: "130px",
+                        width: "120px",
                       }}
                       onClick={()=>SetLinkExist(true)}
                     >
-                      Public domain
+                    Open Roles
                     </Button>
 
                     <Button
@@ -617,15 +632,15 @@ centered
                         fontSize: "0.8rem",
                         fontWeight: "normal",
                         border:"1px solid #3b96e1",
-                        width: "130px",
+                        width: "120px",
                       }}
                       onClick={()=>SetLinkExist(false)}
                     >
-                     Private domain
+                     Private Roles
                     </Button>
                   </div>
                 </Col>
-              </Row>
+              {/* </Row> */}
             </Row>
           </Form>
 
@@ -636,7 +651,7 @@ centered
               {loading ? (
                 "loading..."
               ) : visibleItems.length == 0 ? (
-                <div className="no-jobs-container">
+                <div className="no-jobs-containers" >
                   <span>No matching jobs found.</span>
                 </div>
               ) : (
@@ -847,6 +862,7 @@ centered
                                 SetApplyId(item?._id);
                                 setShowConfirmation(true);
                                 SetApplyLink(item?.Job_Link);
+                                SetShowPrivateConfirm(true);
                               }}
                             >
                               Apply

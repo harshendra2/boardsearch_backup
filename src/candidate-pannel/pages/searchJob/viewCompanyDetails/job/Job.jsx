@@ -23,7 +23,13 @@ const Job = () => {
 
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/posted_jobs/company/${id}/${userId}`
+                    `${BaseUrl}candidate/posted_jobs/company/${id}/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
 
                 setJobs(response?.data);

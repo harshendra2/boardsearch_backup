@@ -34,7 +34,7 @@
 }
 .testimonials-cards {
     padding: 12px;
-    width: 220px;
+    width: 280px;
     border-radius: 6px;
     background: #f8f8f8;
     position: relative;
@@ -43,7 +43,7 @@
 .crads-profile p img {
     position: absolute;
     top: -30px;
-    left: 82px;
+    left: 115px;
 }
 .test-card-heading {
     width: 100%;

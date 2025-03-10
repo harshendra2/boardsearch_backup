@@ -64,6 +64,13 @@ const EditEducation = () => {
     const handleFileChange = (index, e) => {
         const updatedRows = [...rows];
         const file = e.target.files[0];
+        const maxSize = 1 * 1024 * 1024; // 2MB limit
+
+        if (file && file.size > maxSize) {
+            toast.error("File size exceeds 1MB. Please choose a smaller file.")
+            e.target.value = "";
+            return;
+        }
 
         updatedRows[index].image = file;
         updatedRows[index].imageName = file ? file.name : '';
@@ -94,7 +101,13 @@ const EditEducation = () => {
 
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/profile/get_education/${user_Id}`
+                `${BaseUrl}candidate/profile/get_education/${user_Id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             const {
                 highest_education,
@@ -136,20 +149,33 @@ const EditEducation = () => {
         formData.append('board_represent', educationData.board_represent);
         formData.append('articles', educationData.articles);
 
-        rows.forEach((cert, index) => {
-            formData.append(
-                `certificates[${index}][certificateName]`,
-                cert.Certificate
-            );
-            if (cert.image) {
-                formData.append(`certificates[${index}][image]`, cert.image);
+        for (let index = 0; index < rows.length; index++) {
+            const cert = rows[index];
+    
+            if (!cert?.Certificate) {
+                toast.error("Please add Certificate Name");
+                return;
             }
-        });
+    
+            if (!cert?.image) {
+                toast.error("Please upload the appropriate certificate file.");
+                return; 
+            }
+    
+            formData.append(`certificates[${index}][certificateName]`, cert.Certificate);
+            formData.append(`certificates[${index}][image]`, cert.image);
+        }
 
         try {
             const response = await axios.put(
                 `${BaseUrl}candidate/profile/edit_education/${user_Id}`,
-                formData
+                formData,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response?.status === 200 || response?.status === 201) {
                 toast.success('Education Details Updated');
@@ -291,7 +317,8 @@ const EditEducation = () => {
                                 )}
                                 <input
                                     type="file"
-                                    accept="image/*"
+                                  
+                                  accept=".pdf,.png,.jpg,.jpeg"
                                     ref={cert.fileInputRef}
                                     style={{ display: 'none' }}
                                     onChange={event =>

@@ -45,9 +45,16 @@ const ViewCompanyDetails = () => {
 
     const getCompanyDetails = async () => {
         const companyId = id;
+        const token = localStorage.getItem('Candidate_token');
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/company_details/${companyId}`
+                `${BaseUrl}candidate/company_details/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
 
             setcompanyDetails(response?.data);

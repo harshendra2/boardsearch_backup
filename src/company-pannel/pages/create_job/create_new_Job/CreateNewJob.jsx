@@ -67,7 +67,6 @@ const CreateNewJob = () => {
     const [hide, setHide] = useState(null);
     const [pramot, setPramote] = useState('');
     const [JD_Status, SetJD_status] = useState();
-    console.log("appu tesing AI job description ",JD_Status)
     const [applyLoading, SetApplyLoading] = useState(false);
 
     const handleCurrentSkillChange = e => {
@@ -107,9 +106,16 @@ const CreateNewJob = () => {
         }));
     };
     const fetch_suggestion = async () => {
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}/company/job/suggestion_description`
+                `${BaseUrl}/company/job/suggestion_description`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             setSuggestion(response?.data);
         } catch (error) {}
@@ -161,6 +167,7 @@ const CreateNewJob = () => {
         const companyId = decodedToken?._id;
         if (createJobData.salaryType == '') {
             toast.error('Please select Salary type');
+            setModalShow(prev => !prev);
             //setModalShow(false)
             return;
         }
@@ -189,7 +196,13 @@ const CreateNewJob = () => {
             try {
                 const response = await axios.post(
                     `${BaseUrl}company/create_job/${companyId}`,
-                    jobDataWithSkillsAndDescription
+                    jobDataWithSkillsAndDescription,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 if (response?.status == 201 || response?.status == 200) {
                     toast.success('Job created successfully');
@@ -197,10 +210,11 @@ const CreateNewJob = () => {
                     await fetch_job_status();
                 }
             } catch (error) {
+                setModalShow(prev=>!prev)
                 const customError = error?.response?.data?.error;
                 toast.error(customError);
             }finally{
-                setModalShow(false)
+                setModalShow(prev=>!prev)
             }
         }
     };
@@ -248,7 +262,14 @@ const CreateNewJob = () => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.put(
-                `${BaseUrl}/company/ai_count/reduce/${companyId}`
+                `${BaseUrl}/company/ai_count/reduce/${companyId}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             if (response.status == 200 || response.status == 201) {
             }
@@ -311,7 +332,13 @@ const CreateNewJob = () => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}/company/ai_jd/count/${companyId}`
+                `${BaseUrl}/company/ai_jd/count/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             if (response.status == 200 || response.status == 201) {
                 SetJD_status(response?.data?.ai_job_description);
@@ -324,6 +351,14 @@ const CreateNewJob = () => {
         rendering();
         AI_Button_Token();
     }, []);
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
     return (
         <>
@@ -342,7 +377,7 @@ const CreateNewJob = () => {
                     onClick={() => setLgShow(prev => !prev)}
                 />
                 <div className="heading-new-job">
-                    <p>Create Job</p>
+                    <p>List Job</p>
                 </div>
                 <Form>
                     <Row>
@@ -392,6 +427,10 @@ const CreateNewJob = () => {
                         <Col xs={6} md={6}>
                             <Form.Label className="custom-input-group-label">
                                 Salary
+                                <span className="text-danger">*</span>
+                            </Form.Label>
+                            <Form.Label className="custom-input-group-label" style={{ marginLeft: "45%",display: isMobile ? "none" :null}} >
+                            Select Salary Type
                                 <span className="text-danger">*</span>
                             </Form.Label>
                             <InputGroup

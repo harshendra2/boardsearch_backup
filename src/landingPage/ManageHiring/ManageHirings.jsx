@@ -14,7 +14,7 @@ const ManageHirings = () => {
                     </div>
                     <div className="manage-hiring-right">
                         <div className="manage-right-cards">
-                            <h4>Manage Candiates:</h4>
+                            <h4>Manage Candidates:</h4>
                             <p>
                                 Track, evaluate, and organize all applicants
                                 from a single dashboard.

@@ -98,9 +98,16 @@ const EditNewJob = () => {
         }));
     };
     const fetch_suggestion = async () => {
+        const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}/company/job/suggestion_description`
+                `${BaseUrl}/company/job/suggestion_description`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setSuggestion(response?.data);
         } catch (error) {}
@@ -167,10 +174,17 @@ const EditNewJob = () => {
         ) {
             toast.error('Please select atleast one interview round');
         } else {
+            const token = localStorage.getItem('companyToken');
             try {
                 const response = await axios.put(
                     `${BaseUrl}company/edit_job/${EditId}`,
-                    jobDataWithSkillsAndDescription
+                    jobDataWithSkillsAndDescription,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }
                 );
                 if (response?.status == 201 || response?.status == 200) {
                     toast.success('Job edited successfully');
@@ -184,9 +198,16 @@ const EditNewJob = () => {
     };
 
     const GetSingleData=async()=>{
+        const token = localStorage.getItem('companyToken');
         try{
             const response = await axios.get(
-                `${BaseUrl}company/git_single_job/${EditId}`
+                `${BaseUrl}company/git_single_job/${EditId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response?.status == 201 || response?.status == 200) {
                 setcreateJobData(response?.data);
@@ -237,7 +258,14 @@ const EditNewJob = () => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.put(
-                `${BaseUrl}/company/ai_count/reduce/${companyId}`
+                `${BaseUrl}/company/ai_count/reduce/${companyId}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status == 200 || response.status == 201) {
             }
@@ -300,7 +328,13 @@ const EditNewJob = () => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}/company/ai_jd/count/${companyId}`
+                `${BaseUrl}/company/ai_jd/count/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status == 200 || response.status == 201) {
                 SetJD_status(response?.data?.ai_job_description);

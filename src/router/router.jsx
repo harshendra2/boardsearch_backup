@@ -86,7 +86,7 @@ const router = createBrowserRouter([
     },
 
     {
-        path: 'profile-page', // Fixed typo here
+        path: 'profile-page', 
         element: <Profile />,
         children: [
             {

@@ -88,7 +88,13 @@ const EditExperience = () => {
                 try {
                     const response = await axios.put(
                         `${BaseUrl}candidate/profile/experience/${userId}`,
-                        formData
+                        formData,
+                        {
+                            headers: {
+                                authorization: `Bearer ${token}`
+        
+                            }
+                        } 
                     );
                     if (response?.status == 200 || response?.status == 200) {
                         toast.success('Added Successfully');
@@ -272,7 +278,7 @@ const EditExperience = () => {
                             name="location_type"
                             value={expData?.location_type}
                             onChange={handleInputChange}
-                            placeholder="Ex: Pune , Maharashtra "
+                            placeholder="Ex: Rural, Urban"
                             style={{
                                 marginTop: '-6px',
                                 fontSize: '0.8rem',

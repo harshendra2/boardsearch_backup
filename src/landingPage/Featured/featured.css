@@ -2,6 +2,7 @@
     padding: 10px;
     background: white;
     padding-bottom: 60px;
+    overflow: hidden;
 }
 .featured-h1 {
     text-align: center;
@@ -23,6 +24,7 @@
 
     gap: 40px;
     margin-top: 40px;
+    overflow: hidden;
 }
 .featured-left {
     display: flex;
@@ -81,7 +83,7 @@
 
 @keyframes slideInFromLeft {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-50%); /* Adjust this value */
         opacity: 0;
     }
     100% {
@@ -92,7 +94,7 @@
 
 @keyframes slideInFromRight {
     0% {
-        transform: translateX(100%);
+        transform: translateX(50%); /* Adjust this value */
         opacity: 0;
     }
     100% {

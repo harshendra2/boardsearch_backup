@@ -15,7 +15,7 @@ import { CandidateProfileContext } from '../../../context/candidateContext/Candi
 import { toast } from 'react-toastify';
 import ProfileCompletionModal from '../ProfileAlert/ProfileCompletion';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const CandidateSubscription = () => {
     const {
         SubscriptinData,
@@ -95,7 +95,14 @@ const CandidateSubscription = () => {
             const response = await axios.post(`${BaseUrl}candidate/payment`, {
                 userId: userId,
                 subId: sub_id
-            });
+            },
+            {
+                headers: {
+                    authorization: `Bearer ${token}`
+
+                }
+            } 
+        );
             if (response.status === 200 || response.status === 201) {
                 const paymentLink = response?.data?.payment_link;
                 if (paymentLink) {
@@ -120,7 +127,14 @@ const CandidateSubscription = () => {
                 subscriptionId: data?.subscription_id,
                 userId: userId,
                 paymentMethod: data?.payment_methods
-            });
+            },
+            {
+                headers: {
+                    authorization: `Bearer ${token}`
+
+                }
+            } 
+        );
             if (response?.status === 200 || response?.status === 201) {
                 SetEarlyLoading(false);
                 clearInterval(toUpIntervelId);
@@ -163,6 +177,11 @@ const CandidateSubscription = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Subscription", "BoardSearch Candidate");
+      }, []);
 
     return (
         <>
@@ -417,6 +436,7 @@ const CandidateSubscription = () => {
             {showModal && (
                 <ProfileCompletionModal
                     onClose={() => setShowModal(false)} // Close modal handler
+                    setShowModal={setShowModal}
                 />
             )}
         </>

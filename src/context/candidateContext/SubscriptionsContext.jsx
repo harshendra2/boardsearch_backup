@@ -17,7 +17,13 @@ export const SubscriptionsProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/get_allsubscription/${userId}`
+                    `${BaseUrl}candidate/get_allsubscription/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setSubscriptionData(response?.data);
             } catch (error) {}
@@ -33,7 +39,13 @@ export const SubscriptionsProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/get_currentusing/subscription/${userId}`
+                    `${BaseUrl}candidate/get_currentusing/subscription/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 SetCurrentSubscription(response?.data[0]);
             } catch (error) {}

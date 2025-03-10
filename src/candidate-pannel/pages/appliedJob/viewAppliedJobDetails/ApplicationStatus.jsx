@@ -71,7 +71,13 @@ const ApplicationStatus = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/application_status/flow/${id}/${userId}`
+                    `${BaseUrl}candidate/application_status/flow/${id}/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 SetApplicationStatus(
                     response?.data?.jobs?.Shortlisted[0]
@@ -123,7 +129,13 @@ const ApplicationStatus = () => {
                     {
                         rating,
                         feedback
-                    }
+                    },
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || 201) {
                     toast.success('Feedback added successfully');
@@ -228,7 +240,13 @@ const ApplicationStatus = () => {
 
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/offer/reject/otp/:jobId/${userId}`
+                `${BaseUrl}candidate/offer/reject/otp/:jobId/${userId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status === 200 || response.status === 201) {
                 SetRejectShowModel(true);
@@ -260,7 +278,13 @@ const ApplicationStatus = () => {
         try {
             const response = await axios.put(
                 `${BaseUrl}candidate/offer/rejected/otp/confirm/${id}/${userId}`,
-                { OTP, reason }
+                { OTP, reason },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response.status === 200 || response.status === 201) {
                 toast.success('Offer rejected successfully.');

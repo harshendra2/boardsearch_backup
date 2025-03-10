@@ -55,7 +55,13 @@ export const SearchJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/getunappliedjob/${userId}/${currentPage}/${selectValue}/${JobLinkExist}`
+                    `${BaseUrl}candidate/getunappliedjob/${userId}/${currentPage}/${selectValue}/${JobLinkExist}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 let data = response?.data?.data;
                 let page = response?.data?.totalPages;
@@ -91,7 +97,14 @@ export const SearchJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.post(
-                    `${BaseUrl}candidate/jobapply/${userId}/${jobId}`
+                    `${BaseUrl}candidate/jobapply/${userId}/${jobId}`,
+                    {},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || response?.status == 201) {
                     toast.success('Job Applied successfully ');
@@ -110,7 +123,14 @@ export const SearchJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.post(
-                    `${BaseUrl}candidate/savejob/${userId}/${jobId}`
+                    `${BaseUrl}candidate/savejob/${userId}/${jobId}`,
+                    {},
+                    {
+                        headers: {
+                            authorization:`Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 if (response.status == 200 || 201) {
                     toast.success('Job Saved successfully');
@@ -120,9 +140,16 @@ export const SearchJobProvider = ({ children }) => {
         }
     };
     const getSingleJobDetails = async id => {
+        const token = localStorage.getItem('Candidate_token');
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/getjobdetails/${id}`
+                `${BaseUrl}candidate/getjobdetails/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
 
             setJobdata(response?.data);

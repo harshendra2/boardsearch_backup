@@ -17,6 +17,7 @@ import Loader from '../loader/Loader';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import DisplayHiredCandidate from './DisplayHiredCandidate/DisplayHiredCandidate';
+import { initGA, trackEvent } from "../../../analytics";
 let promoteJob = {};
 const CreateJob = () => {
     const {
@@ -97,12 +98,18 @@ const CreateJob = () => {
         await viewJobDescription(job_id);
         naviagte('/main/view-job-application/applications');
     };
-
     const handle_promote_job = async data => {
-        setJob_id(data);
+        setJob_id(data);      
+const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_promoted/details`
+                `${BaseUrl}company/get_promoted/details`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             setPromoteJobData(response?.data);
         } catch (error) {}
@@ -123,6 +130,12 @@ const CreateJob = () => {
                 {
                     company_id,
                     jobId
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response.status == 200 || response?.status == 201) {
@@ -152,6 +165,12 @@ const CreateJob = () => {
                     jobId: data?.jobId,
                     company_id: companyId,
                     paymentMethod: data?.payment_methods || 'UPI'
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
             if (response?.status === 200 || response?.status === 201) {
@@ -244,6 +263,11 @@ const CreateJob = () => {
         SetEditId(id);
         SetEditShow(prev => !prev);
     }
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "List Job", "BoardSearch Company");
+      }, []);
 
     return (
         <>
@@ -587,7 +611,7 @@ const CreateJob = () => {
                                             </table>
                                             <div
                                                 className="div-bnt"
-                                                onClick={handleNavigate}
+                                                // onClick={handleNavigate}
                                             >
                                                 <Button
                                                     size="sm"
@@ -639,7 +663,7 @@ const CreateJob = () => {
                                 </>
                             ))
                         ) : (
-                            <div className="no-jobs-container">
+                            <div className="no-jobs-Created-container">
                                 <span>You haven't listed any jobs yet</span>
                             </div>
                         )}

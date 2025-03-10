@@ -13,7 +13,13 @@ const TrasactionsData = () => {
         const companyId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_transaction/company/${companyId}`
+                `${BaseUrl}company/get_transaction/company/${companyId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             settransactionData(response?.data);
         } catch (error) {}

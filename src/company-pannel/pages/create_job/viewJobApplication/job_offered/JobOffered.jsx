@@ -73,11 +73,13 @@ const isoDate = dateValue.toISOString();
         formData.append('file', file);
         formData.append('date',isoDate)
         try {
+            const token = localStorage.getItem('companyToken');
             const response = await axios.put(
                 `${BaseUrl}company/job_offer/${jobid}/${user_id}`,
                 formData,
                 {
                     headers: {
+                        authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
                     }
                 }
@@ -285,7 +287,7 @@ const isoDate = dateValue.toISOString();
                                 <tr>
                                     <td style={{ paddingRight: '30px' }}>
                                         <span className="card-table-span">
-                                            resume:
+                                            Resume:
                                         </span>{' '}
                                     </td>
                                     <td>
@@ -322,7 +324,7 @@ const isoDate = dateValue.toISOString();
                             onClick={handle_file_upload}
                         >
                             <span>
-                                {file ? file?.name : 'browser from file'}
+                                {file ? file?.name : 'browse from file'}
                             </span>
                         </button>
                         </div>
@@ -330,6 +332,7 @@ const isoDate = dateValue.toISOString();
                         <input
                             ref={fileref}
                             type="file"
+                            accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
                             style={{ display: 'none' }}
                             onChange={handle_file_change}
                         />{' '}
@@ -368,7 +371,7 @@ const isoDate = dateValue.toISOString();
                             disabled={!file}
                             onClick={handle_send_offerLetter}
                         >
-                            <span>send Offer</span>
+                            <span>Send Offer</span>
                         </button>
             </div>
         </>

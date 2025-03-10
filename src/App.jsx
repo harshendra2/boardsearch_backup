@@ -22,6 +22,7 @@ import { SubscriptionsProvider } from './context/candidateContext/SubscriptionsC
 import { CandidateSupportProvider } from './context/candidateContext/CandidateSupportContext';
 import { CandidateProfileProvider } from './context/candidateContext/CandidateProfileContext';
 import { AccessProvider } from './context/AccessManagementContext';
+import TrackPageView from "./GoogleAnalytics";
 function App() {
     const [count, setCount] = useState(0);
     function useTabTitle(title) {
@@ -45,11 +46,15 @@ function App() {
                                                         <CandidateSupportProvider>
                                                             <CandidateProfileProvider>
                                                                 <AccessProvider>
-                                                                    <RouterProvider
+                                                                    {/* <RouterProvider
+                                                                    
                                                                         router={
                                                                             router
                                                                         }
-                                                                    />
+                                                                    /> */}
+                                                                    <RouterProvider router={router}>
+                                                                    <TrackPageView />
+                                                                    </RouterProvider>
                                                                 </AccessProvider>
                                                                 <ToastContainer />
                                                             </CandidateProfileProvider>

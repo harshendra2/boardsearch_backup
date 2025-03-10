@@ -104,10 +104,12 @@ const Experience = () => {
             const response = await axios.delete(
                 `${BaseUrl}candidate/profile/delete_work/${work_id}/${user_id}`,
                 {
+                    data:{},
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        authorization: `Bearer ${token}`
+
                     }
-                }
+                } 
             );
 
             if (response?.status == 200 || response?.status == 201) {
@@ -252,32 +254,36 @@ const Experience = () => {
                                                         }}
                                                         onClick={() =>
                                                             showEditExp(
-                                                                CandidateProfile
-                                                                    ?.data
-                                                                    ?.work_details
-                                                                    ?.Experience[0]
-                                                                    ?._id
+                                                                items?._id
                                                             )
                                                         }
                                                     />
                                                 </Col>
                                             </Row>
 
-                                            <h6>
-                                                {items?.companyName}{' '}
+                                            <h6 style={{fontSize:'0.8rem',fontFamily:'Poppins',color:'#7e7e7e'}}>
+                                            {items?.companyName && items.companyName.length >35 
+  ? `${items.companyName.substring(0,35)}...` 
+  : items?.companyName}
+
                                                 <span>
                                                     {' '}
                                                     <ul>
                                                         <li>
-                                                            {
-                                                                items?.reporting_structure
-                                                            }
+                                                         
+                                                             { items?.reporting_structure&& items?.reporting_structure.length >35 
+  ? `${ items?.reporting_structure.substring(0,35)}...` 
+  : items?.reporting_structure}
+
                                                         </li>
                                                     </ul>
                                                 </span>
                                             </h6>
                                             <p className="exp-add">
-                                                {items?.location} ,
+                                                {items?.location&&items?.location.length >35 
+  ? `${items?.location.substring(0,35)}...` 
+  :items?.location}
+                                                 ,
                                                 <span>
                                                     {items?.location_type}
                                                 </span>{' '}
@@ -340,30 +346,18 @@ const Experience = () => {
                         <Col xs={12} sm={6} md={6} lg={6}>
                             <div className="work-detials">
                                 <Row style={{ padding: '14px' }}>
-                                    <Col
-                                        xs={11}
-                                        style={{
-                                            color: '#051F50',
+                                  
+                                    <p style={{color: '#051F50',
                                             fontWeight: '500',
-                                            marginTop: '6px',
-                                            fontSize: '0.9rem'
-                                        }}
-                                    >
-                                        Work Details
-                                    </Col>
-                                    <Col xs={1}>
-                                        <img
-                                            src={EditProfile}
-                                            alt=""
-                                            width="18px"
-                                            className="mx-1"
-                                            style={{
-                                                marginTop: '8px',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={handleShowWork}
-                                        />
-                                    </Col>
+                                            fontSize: '0.9rem'}}>  Work Details
+        <img
+            className="edit-profile-btn"
+            src={EditProfile}
+            alt="Edit"
+           style={{height:'20px', width:'auto',cursor: "pointer", marginLeft:'45%'}}
+           onClick={handleShowWork}
+        />
+    </p>
                                     <table style={{ marginLeft: '10px' }}>
                                         <tr>
                                             <th></th>
@@ -380,7 +374,7 @@ const Experience = () => {
                                             >
                                                 Total Experience:
                                             </td>
-                                            <td className="data">
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {CandidateProfile?.data
                                                     ?.work_details
                                                     ?.work_experience ||
@@ -388,24 +382,6 @@ const Experience = () => {
                                                 years
                                             </td>
                                         </tr>
-                                        {/* <tr>
-                                            <td
-                                                style={{
-                                                    color: '#AEAEAE',
-                                                    fontSize: '0.8rem',
-                                                    width: '50%',
-                                                    verticalAlign: 'top'
-                                                }}
-                                            >
-                                                Current CTC:
-                                            </td>
-                                            <td className="data">
-                                                {CandidateProfile?.data
-                                                    ?.work_details
-                                                    ?.current_ctc || 'N/A'}{' '}
-                                                CTC
-                                            </td>
-                                        </tr> */}
                                         <tr>
                                             <td
                                                 style={{
@@ -417,7 +393,7 @@ const Experience = () => {
                                             >
                                                 Aspiring Position/Role:
                                             </td>
-                                            <td className="data">
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {CandidateProfile?.data
                                                     ?.work_details
                                                     ?.aspiring_position ||
@@ -435,7 +411,7 @@ const Experience = () => {
                                             >
                                                 Skills:
                                             </td>
-                                            <td className="data">
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {CandidateProfile?.data?.work_details?.skill?.map(
                                                     (items, index) => (
                                                         <React.Fragment
@@ -496,7 +472,7 @@ const Experience = () => {
                                             >
                                                 Career highlights details:
                                             </td>
-                                            <td className="data">
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {CandidateProfile?.data
                                                     ?.work_details
                                                     ?.career_highlight || 'N/A'}
@@ -513,7 +489,7 @@ const Experience = () => {
                                             >
                                                 Awards & Recognition:
                                             </td>
-                                            <td className="data">
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {CandidateProfile?.data
                                                     ?.work_details
                                                     ?.recognation || 'N/A'}
@@ -522,37 +498,26 @@ const Experience = () => {
                                     </table>
                                 </Row>
                             </div>
-                            <div className="projects">
+                            <div  className="work-detials">
                                 <Row style={{ padding: '14px' }}>
-                                    <Col
-                                        xs={11}
-                                        style={{
-                                            color: '#051F50',
+
+                                <p style={{color: '#051F50',
                                             fontWeight: '500',
-                                            marginTop: '6px',
-                                            fontSize: '0.9rem'
-                                        }}
-                                    >
-                                        Projects Details
-                                    </Col>
-                                    <Col xs={1}>
-                                        <img
-                                            // src={EditProfile}
-                                            src={addPlues}
-                                            alt=""
-                                            width="18px"
-                                            className="mx-1"
-                                            style={{
-                                                marginTop: '8px',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={() =>
-                                                setShowProjectModel(
-                                                    prev => !prev
-                                                )
-                                            }
-                                        />
-                                    </Col>
+                                            fontSize: '0.9rem'}}>   Projects Details
+        <img
+            className="edit-profile-btn"
+            src={addPlues}
+            alt="Edit"
+           style={{height:'20px', width:'auto',cursor: "pointer", marginLeft:'41%'}}
+           onClick={() =>
+            setShowProjectModel(
+                prev => !prev
+            )
+        }
+        />
+    </p>
+
+                                    
                                     {CandidateProfile?.data?.work_details?.Projects?.map(
                                         (item, index) => (
                                             <>
@@ -599,7 +564,7 @@ const Experience = () => {
                                                         >
                                                             Project Title:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {
                                                                 item?.project_title
                                                             }
@@ -618,7 +583,7 @@ const Experience = () => {
                                                         >
                                                             Project Duration:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             {
                                                                 item?.Project_duration
@@ -638,7 +603,7 @@ const Experience = () => {
                                                         >
                                                             Project Url:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             <a
                                                                style={{color:'blue'}}
@@ -663,7 +628,7 @@ const Experience = () => {
                                                         >
                                                             Project Status:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             {
                                                                 item?.Project_status
@@ -683,7 +648,7 @@ const Experience = () => {
                                                         >
                                                             Role:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             {item?.role}
                                                         </td>
@@ -701,7 +666,7 @@ const Experience = () => {
                                                         >
                                                             Skills Used:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             {item?.skills_used}
                                                         </td>
@@ -719,7 +684,7 @@ const Experience = () => {
                                                         >
                                                             Project Site:
                                                         </td>
-                                                        <td className="data">
+                                                        <td className="data" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             {item?.project_site}
                                                         </td>
@@ -737,7 +702,7 @@ const Experience = () => {
                                                         >
                                                             Project-Details:
                                                         </td>
-                                                        <td className="data mt-2">
+                                                        <td className="data mt-2" style={{fontSize:'0.8rem'}}>
                                                             {' '}
                                                             <div
                                                                 style={{
@@ -754,7 +719,7 @@ const Experience = () => {
                                                                         textAlign:
                                                                             'justify',
                                                                         fontSize:
-                                                                            '0.9rem'
+                                                                            '0.8rem'
                                                                     }}
                                                                 >
                                                                     {

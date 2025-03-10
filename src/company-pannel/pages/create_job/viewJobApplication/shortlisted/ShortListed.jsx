@@ -46,9 +46,17 @@ const ShortListed = () => {
     };
     const reject_finalise_candidate = async user_id => {
         const jobid = localStorage.getItem('job_id');
+const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.put(
-                `${BaseUrl}company/reject_applicent/${jobid}/${user_id}`
+                `${BaseUrl}company/reject_applicent/${jobid}/${user_id}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
 
             if (response.status == 200) {
@@ -93,6 +101,8 @@ const ShortListed = () => {
     const [comment, setComment] = useState('');
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalfinalise, setisModalfinalise] = useState(false);
+    const [rejectModal,SetRejectModal]=useState(false);
+    const [RejectId,SetRejectId]=useState('');
 
     const showModal = user_id => {
         setuser_id(user_id);
@@ -109,11 +119,24 @@ const ShortListed = () => {
         if (data == 'yes') {
             finalise_candidate(Finalise_userId);
             setisModalfinalise(prev => !prev);
-        } else if (data == 'no') {
-            reject_finalise_candidate(Finalise_userId);
-            setisModalfinalise(prev => !prev);
         }
+        // } else if (data == 'no') {
+        //     reject_finalise_candidate(Finalise_userId);
+        //     setisModalfinalise(prev => !prev);
+        // }
     };
+
+    const handle_Reject_candidate=data=>{
+        if (data == 'no') {
+            reject_finalise_candidate(RejectId);
+            SetRejectModal(prev => !prev);
+        }
+    }
+
+    const handle_finalise_Rejects=data=>{
+        SetRejectModal(true);
+        SetRejectId(data);
+    }
 
     const naviagte_hired = user_id => {
         localStorage.setItem('hired', user_id);
@@ -255,8 +278,16 @@ const ShortListed = () => {
                                 scope="col"
                                 style={{ fontSize: '0.7rem' }}
                             >
+                                Reject
+                            </th>
+                            <th
+                                className="p-1"
+                                scope="col"
+                                style={{ fontSize: '0.7rem' }}
+                            >
                                 Hire
                             </th>
+                            
                         </tr>
                     </thead>
                     <tbody style={{ fontSize: '0.7rem' }}>
@@ -313,6 +344,25 @@ const ShortListed = () => {
                                         </Button>
                                     </td>
                                     <td style={{ width: '20%' }}>
+                                      <Button
+                                                size="sm"
+                                                style={{
+                                                    background: "white",
+                                                    color: "#3B96E1",
+                                                    width:'100%'
+                                                  }}
+                                            disabled={item?.Shortlisted?.short_Candidate}
+                                                onClick={() =>
+                                                    handle_finalise_Rejects(
+                                                        item?.CandidateDetails
+                                                            ?._id
+                                                    )
+                                                }
+                                            >
+                                                Reject
+                                            </Button>
+                                      </td>
+                                    <td style={{ width: '20%' }}>
                                         {item?.Shortlisted?.short_Candidate ? (
                                             <Button
                                                 size="sm"
@@ -351,6 +401,7 @@ const ShortListed = () => {
                                             </Button>
                                         )}
                                     </td>
+                                      
                                 </tr>
                             </>
                         ))}
@@ -409,17 +460,63 @@ const ShortListed = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Action</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sure ?</Modal.Body>
+                <Modal.Body>Are you sure you want to finalize this candidate?</Modal.Body>
                 <Modal.Footer>
                     <Button
-                        variant="secondary"
-                        onClick={() => handle_finalise_candidate('no')}
+                    size='sm'
+                       style={{
+                        background: "white",
+                        color: "#3B96E1",
+                        width:'100px'
+                      }}
+                        // onClick={() => handle_finalise_candidate('no')}
+                        onClick={handle_finalise}
                     >
                         No
                     </Button>
                     <Button
-                        variant="primary"
+                         size="sm"
+                         style={{
+                             background: '#3B96E1',
+                             color: 'white',
+                             border: 'none',
+                             width: '100px'
+                         }}
                         onClick={() => handle_finalise_candidate('yes')}
+                    >
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+              {/* Reject Offers  */}
+            <Modal show={rejectModal} onHide={()=>SetRejectModal(prev=>!prev)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Action</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to Reject this candidate?</Modal.Body>
+                <Modal.Footer>
+                    <Button
+                    size='sm'
+                       style={{
+                        background: "white",
+                        color: "#3B96E1",
+                        width:'100px'
+                      }}
+                        // onClick={() => handle_finalise_candidate('no')}
+                        onClick={()=>SetRejectModal(prev=>!prev)}
+                    >
+                        No
+                    </Button>
+                    <Button
+                         size="sm"
+                         style={{
+                             background: '#3B96E1',
+                             color: 'white',
+                             border: 'none',
+                             width: '100px'
+                         }}
+                        onClick={() => handle_Reject_candidate('no')}
                     >
                         Yes
                     </Button>

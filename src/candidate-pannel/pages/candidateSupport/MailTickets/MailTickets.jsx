@@ -96,224 +96,223 @@ const MailTickets = () => {
             >
                 <SendMails />
             </Modal>
+
+
+
             <div className="support mt-2">
-                <Row>
-                    <div className="Search-support">
-                        <OverlayTrigger placement="bottom" overlay={SendMail}>
-                            <Button
-                                size="sm"
-                                className="add-issue-btn"
-                                onClick={() => setMailModelShow(true)}
-                            >
-                                Send Mail +
-                            </Button>
-                        </OverlayTrigger>
+    <div className="Search-support">
+        <div className="top-row">
+            <OverlayTrigger placement="bottom" overlay={SendMail}>
+                <Button
+                    size="sm"
+                    className="add-issue-btn"
+                    onClick={() => setMailModelShow(true)}
+                >
+                    Send Mail +
+                </Button>
+            </OverlayTrigger>
 
-                        <div className="search-bar-suport">
-                            <img src={SearchIconS} alt="" width="20px" />
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                onChange={e => SetSeacrhInput(e.target.value)}
-                            />
-                        </div>
+            <div className="search-bar-suport">
+                <img src={SearchIconS} alt="" width="20px" />
+                <input
+                    type="text"
+                    placeholder="Search"
+                    onChange={e => SetSeacrhInput(e.target.value)}
+                />
+            </div>
+        </div>
 
-                        <Row style={{paddingLeft:'24px'}}>
-                                                <Col xs="auto" className="p-0 mb-2">
-                                                <button
-                                                    style={{
-                                                        borderRadius: '20px 0 0 20px',
-                                                        border: '1px solid #ccc',
-                                                        backgroundColor: activeButton === 'solved' ? '#3B96E1' : '#fff',
-                                                        color: activeButton === 'solved' ? '#fff' : '#000',
-                                                        padding: '9px 11px',
-                                                        cursor: 'pointer',
-                                                        fontSize: '0.8rem',
-                                                        fontWeight: 'bold'
-                                                    }}
-                                                    onClick={() => handleToggle('solved')}
-                                                >
-                                                    Close
-                                                </button>
-                                            </Col>
-                                            <Col xs="auto" className="p-0">
-                                                <button
-                                                    style={{
-                                                        border: '1px solid #ccc',
-                                                        backgroundColor: activeButton === 'pending' ? '#3B96E1' : '#fff',
-                                                        color: activeButton === 'pending' ? '#fff' : '#000',
-                                                        padding: '9px 11px',
-                                                        cursor: 'pointer',
-                                                        fontSize: '0.8rem',
-                                                        fontWeight: 'bold'
-                                                    }}
-                                                    onClick={() => handleToggle('pending')}
-                                                >
-                                                    Open
-                                                </button>
-                                            </Col>
-                                            <Col xs="auto" className="p-0">
-                                                <button
-                                                    style={{
-                                                        borderRadius: '0 20px 20px 0',
-                                                        border: '1px solid #ccc',
-                                                        backgroundColor: activeButton === 'reject' ? '#3B96E1' : '#fff',
-                                                        color: activeButton === 'reject' ? '#fff' : '#000',
-                                                        padding: '9px 11px',
-                                                        cursor: 'pointer',
-                                                        fontSize: '0.8rem',
-                                                        fontWeight: 'bold'
-                                                    }}
-                                                    onClick={() => handleToggle('reject')}
-                                                >
-                                                    Reject
-                                                </button>
-                                            </Col>
-                                                </Row>
-                    </div>
-                </Row>
-                <Row className="mt-2">
-                    {loading ? ( //e Show loading stat
-                        <div style={{ textAlign: 'center', padding: '20px' }}>
-                            <span>Loading...</span>
-                        </div>
-                    ) : (
-                        <Table
-                            bordered
-                            striped
-                            responsive
-                            className="custom-table"
+        {/* Toggle Buttons */}
+        <Row className="toggle-btn">
+            <Col xs="auto" className="p-0 mb-2">
+                <button
+                    style={{
+                        borderRadius: '20px 0 0 20px',
+                        border: '1px solid #ccc',
+                        backgroundColor: activeButton === 'solved' ? '#3B96E1' : '#fff',
+                        color: activeButton === 'solved' ? '#fff' : '#000',
+                        padding: '9px 11px',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        fontWeight: 'bold'
+                    }}
+                    onClick={() => handleToggle('solved')}
+                >
+                    Close
+                </button>
+            </Col>
+            <Col xs="auto" className="p-0">
+                <button
+                    style={{
+                        border: '1px solid #ccc',
+                        backgroundColor: activeButton === 'pending' ? '#3B96E1' : '#fff',
+                        color: activeButton === 'pending' ? '#fff' : '#000',
+                        padding: '9px 11px',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        fontWeight: 'bold'
+                    }}
+                    onClick={() => handleToggle('pending')}
+                >
+                    Open
+                </button>
+            </Col>
+            <Col xs="auto" className="p-0">
+                <button
+                    style={{
+                        borderRadius: '0 20px 20px 0',
+                        border: '1px solid #ccc',
+                        backgroundColor: activeButton === 'reject' ? '#3B96E1' : '#fff',
+                        color: activeButton === 'reject' ? '#fff' : '#000',
+                        padding: '9px 11px',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        fontWeight: 'bold'
+                    }}
+                    onClick={() => handleToggle('reject')}
+                >
+                    Reject
+                </button>
+            </Col>
+        </Row>
+    </div>
+
+    {/* Table Section */}
+    <Row className="mt-2">
+        {loading ? (
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+                <span>Loading...</span>
+            </div>
+        ) : (
+            <Table
+                bordered
+                striped
+                responsive
+                className="custom-table"
+                style={{
+                    overflowX: 'auto',
+                    overflowY: 'auto'
+                }}
+            >
+                <thead>
+                    <tr style={{ borderTop: 'none' }}>
+                        <th
                             style={{
-                                overflowX: 'auto',
-                                overflowY: 'auto'
+                                fontSize: '0.8rem',
+                                borderLeft: 'none',
+                                color: '#051F50'
+                            }}
+                            className="p-3"
+                            scope="col"
+                        >
+                            Sr. No
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
                             }}
                         >
-                            <thead>
-                                <tr style={{ borderTop: 'none' }}>
-                                    <th
+                            Tickets
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
+                            }}
+                        >
+                            Issue Type
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
+                            }}
+                        >
+                            Description
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
+                            }}
+                        >
+                            File
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
+                            }}
+                        >
+                            Date
+                        </th>
+                        <th
+                            className="p-3"
+                            scope="col"
+                            style={{
+                                fontSize: '0.8rem',
+                                color: '#051F50'
+                            }}
+                        >
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody style={{ fontSize: '0.8rem' }}>
+                    {fiteredData && fiteredData.length > 0 ? (
+                        fiteredData.map((item, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{item?.Ticket}</td>
+                                <td>{item?.Issue_type}</td>
+                                <td>{item?.description}</td>
+                                <td>{RemovePath(item?.file)}</td>
+                                <td>{formatDate(item?.createdDate)}</td>
+                                <td>
+                                    <p
                                         style={{
-                                            fontSize: '0.8rem',
-                                            borderLeft: 'none',
-                                            color: '#051F50'
-                                        }}
-                                        className="p-3"
-                                        scope="col"
-                                    >
-                                        Sr. No
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
+                                            color:
+                                                item?.status === 'solved'
+                                                    ? 'green'
+                                                    : item?.status === 'reject'
+                                                    ? 'red'
+                                                    : '#051F50'
                                         }}
                                     >
-                                        Tickets
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
-                                        }}
-                                    >
-                                        Issue Type
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
-                                        }}
-                                    >
-                                        Description
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
-                                        }}
-                                    >
-                                        File
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
-                                        }}
-                                    >
-                                        Date
-                                    </th>
-                                    <th
-                                        className="p-3"
-                                        scope="col"
-                                        style={{
-                                            fontSize: '0.8rem',
-                                            color: '#051F50'
-                                        }}
-                                    >
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody style={{ fontSize: '0.8rem' }}>
-                                {fiteredData && fiteredData.length > 0 ? (
-                                    fiteredData.map((item, index) => (
-                                        <tr key={index}>
-                                            <td>{index + 1}</td>
-                                            <td>{item?.Ticket}</td>
-                                            <td>{item?.Issue_type}</td>
-                                            <td>{item?.description}</td>
-                                            <td>{RemovePath(item?.file)}</td>
-                                            <td>
-                                                {formatDate(item?.createdDate)}
-                                            </td>
-                                            <td>
-                                                <p
-                                                    style={{
-                                                        color:
-                                                            item?.status ===
-                                                            'solved'
-                                                                ? 'green'
-                                                                : item?.status ===
-                                                                  'reject'
-                                                                ? 'red'
-                                                                : '#051F50'
-                                                    }}
-                                                >
-                                                    {toCamelCase_Name(
-                                                          item?.status === 'solved'
-                                                          ? 'Closed'
-                                                          : item?.status === 'reject'
-                                                          ? 'Rejected'
-                                                          : 'Opened'
-                                                    )}
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td
-                                            colSpan="7"
-                                            style={{ textAlign: 'center' }}
-                                        >
-                                            No data to show...
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </Table>
+                                        {toCamelCase_Name(
+                                            item?.status === 'solved'
+                                                ? 'Closed'
+                                                : item?.status === 'reject'
+                                                ? 'Rejected'
+                                                : 'Opened'
+                                        )}
+                                    </p>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="7" style={{ textAlign: 'center' }}>
+                                No data to show...
+                            </td>
+                        </tr>
                     )}
-                </Row>
-            </div>
+                </tbody>
+            </Table>
+        )}
+    </Row>
+</div>
         </>
     );
 };

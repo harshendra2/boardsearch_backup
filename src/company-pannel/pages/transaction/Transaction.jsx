@@ -4,7 +4,7 @@ import arrowdown from '../../../assets/images/arrowdown.png';
 import TrasactionsData from '../../../hooks/company_dashboard/TrasactionsData';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const Transaction = () => {
     const { transactionData } = TrasactionsData(); // Fetch the data
     const navigate = useNavigate();
@@ -57,6 +57,10 @@ const Transaction = () => {
         }
     }
 
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Transaction", "BoardSearch Company");
+      }, []);
     return (
         <>
             <Helmet>

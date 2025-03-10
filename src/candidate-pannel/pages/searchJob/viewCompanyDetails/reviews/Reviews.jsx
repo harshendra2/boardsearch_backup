@@ -24,7 +24,13 @@ const Reviews = () => {
 
         try {
             const response = await axios.get(
-                `${BaseUrl}/candidate/company/review/${id}`
+                `${BaseUrl}/candidate/company/review/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }  
             );
             setReviews(response?.data || []); // Ensure reviews is always an array
         } catch (error) {

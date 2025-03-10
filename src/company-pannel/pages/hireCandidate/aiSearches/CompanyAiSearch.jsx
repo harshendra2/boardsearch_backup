@@ -154,9 +154,17 @@ const CompanyAiSearch = () => {
     useEffect(() => {
         if (AllCustomId.length > 0) {
             const fetchData = async () => {
+                
+const token = localStorage.getItem('companyToken');
                 const response = await axios.post(
                     `${BaseUrl}company/get_ai/candidate`,
-                    {AllCustomId:AllCustomId}
+                    {AllCustomId:AllCustomId},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }
                 );
                 setAiData(response?.data?.data);
             };
@@ -380,46 +388,16 @@ const CompanyAiSearch = () => {
                                                               </div>
                                                               <div className="result-text">
                                                                   <h4>
-                                                                      {candidate?.BasicDetails[0]?.name}
+                                                                  {candidate?.BasicDetails[0]?.name&&candidate?.BasicDetails[0]?.name.length >25
+    ? candidate?.BasicDetails[0]?.name.substring(0,25) + "..."
+    : candidate?.BasicDetails[0]?.name}
                           
-                                                                      {/* Tool-tip componet */}
-                                                                      {/* {candidate?.personalDetails[0]
-                                                                          ?.Aadhar_verified_status &&
-                                                                      candidate?.personalDetails[0]
-                                                                          ?.Pan_verified_status ? (
-                                                                          <OverlayTrigger
-                                                                              placement="top"
-                                                                              overlay={
-                                                                                  <div
-                                                                                      style={{
-                                                                                          position:
-                                                                                              'absolute',
-                                                                                          backgroundColor:
-                                                                                              'white',
-                                                                                          padding:
-                                                                                              '2px 10px',
-                                                                                          color: '#008000',
-                                                                                          borderRadius: 3,
-                                                                                          border: '1px solid #008000'
-                                                                                      }}
-                                                                                  >
-                                                                                      Verified
-                                                                                  </div>
-                                                                              }
-                                                                          >
-                                                                              <img
-                                                                                  src={Verified}
-                                                                                  alt="Verified"
-                                                                                  width="19"
-                                                                              />
-                                                                          </OverlayTrigger>
-                                                                      ) : null} */}
+                                                                  
                                                                   </h4>
                                                                   <p>
-                                                                      {
-                                                                          candidate?.WorkDetails
-                                                                              ?.aspiring_position
-                                                                      }
+{candidate?.WorkDetails?.aspiring_position&&candidate?.WorkDetails?.aspiring_position.length >45
+    ? candidate?.WorkDetails?.aspiring_position.substring(0,40) + "..."
+    :candidate?.WorkDetails?.aspiring_position}
                                                                   </p>
                                                               </div>
                                                           </div>

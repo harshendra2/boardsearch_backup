@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { Modal, OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
+import { Modal, OverlayTrigger, Row, Table, Tooltip } from 'react-bootstrap';
 import Details from './../../searchJob/viewCompanyDetails/details/Details';
 import EditProfile from '../../../../assets/images/EditProfile.png';
 import EditBasicDetails from './basicDetailsForm/EditBasicDetails';
@@ -67,7 +67,21 @@ function MyDetails() {
     return (
         <>
             <div className="myDetials">
-                <p style={{ fontSize: '14px' }}>Basic Details</p>
+          
+    <p style={{ fontSize: "14px"}}>Basic Details 
+    <OverlayTrigger placement="top" overlay={EditBasic}>
+        <img
+            className="edit-profile-btn"
+            src={EditProfile}
+            alt="Edit"
+           style={{height:'20px', width:'auto',cursor: "pointer", marginLeft:'45%'}}
+            onClick={showModal}
+        />
+    </OverlayTrigger>
+    </p>
+
+
+                        
                 <table>
                     <tr>
                         <th></th>
@@ -76,92 +90,80 @@ function MyDetails() {
                     </tr>
                     <tr>
                         <td
-                            style={{
-                                color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%',
-                                padding: '2px'
-                            }}
+                         className='Personal_details_key'
+                         style={{
+                             color: '#AEAEAE',
+                             fontSize: '12px',
+                         }}
                         >
                             Name:
                         </td>
-                        <td style={{ color: '#051F50', fontSize: '12px' }}>
+                        <td style={{ color: '#051F50', fontSize: '12px'}}>
                             {CandidateProfile?.data?.basic_details?.name ||
                                 'N/A'}
                         </td>
-                        <td>
-                            <OverlayTrigger placement="top" overlay={EditBasic}>
-                                <img
-                                    className="edit-profile-btn"
-                                    src={EditProfile}
-                                    alt=""
-                                    width="20px"
-                                    onClick={showModal}
-                                />
-                            </OverlayTrigger>
-                        </td>
+                       
+
                     </tr>
                     <tr>
                         <td
-                            style={{
-                                color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%',
-                                padding: '2px'
-                            }}
+                         className='Personal_details_key'
+                         style={{
+                             color: '#AEAEAE',
+                             fontSize: '12px',
+                         }}
                         >
                             Email:
                         </td>
-                        <td style={{ color: '#051F50', fontSize: '12px' }}>
+                        <td style={{ color: '#051F50', fontSize: '12px'}}>
                             {CandidateProfile?.data?.basic_details?.email ||
                                 'N/A'}
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style={{
-                                color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%',
-                                padding: '2px'
-                            }}
+                       
+                       className='Personal_details_key'
+                       style={{
+                           color: '#AEAEAE',
+                           fontSize: '12px',
+                       }}
                         >
-                            Contact Email Address:
+                            Contact Email:
                         </td>
-                        <td style={{ color: '#051F50', fontSize: '12px' }}>
+                        <td style={{ color: '#051F50', fontSize: '12px'}}>
                             {CandidateProfile?.data?.basic_details
                                 ?.contact_email || 'N/A'}
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style={{
-                                color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%',
-                                padding: '2px'
-                            }}
+                         className='Personal_details_key'
+                         style={{
+                             color: '#AEAEAE',
+                             fontSize: '12px',
+                         }}
                         >
                             Mobile no:
                         </td>
-                        <td style={{ color: '#051F50', fontSize: '12px' }}>
+                        <td style={{ color: '#051F50', fontSize: '12px'}}>
                             {CandidateProfile?.data?.basic_details?.mobile ||
                                 'N/A'}
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style={{
-                                color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%',
-                                padding: '2px'
-                            }}
+                         className='Personal_details_key'
+                         style={{
+                             color: '#AEAEAE',
+                             fontSize: '12px',
+                         }}
                         >
                             LinkedIn:
                         </td>
-                        <td style={{ color: '#051F50', fontSize: '12px' }}>
-                            {CandidateProfile?.data?.basic_details?.linkedIn ||
+                        <td style={{ color: '#051F50', fontSize: '12px'
+                                 }}>
+                            {CandidateProfile?.data?.basic_details?.linkedIn&&CandidateProfile?.data?.basic_details?.linkedIn.length>60?CandidateProfile?.data?.basic_details?.linkedIn.substring(0,50):CandidateProfile?.data?.basic_details?.linkedIn ||
                                 'N/A'}
                         </td>
                     </tr>
@@ -194,7 +196,20 @@ function MyDetails() {
                 </table>
             </div>
             <div className="myDetials mt-3">
-                <p style={{ fontSize: '14px' }}>Personal Details</p>
+                <p style={{ fontSize: '14px' }}>Personal Details
+                <OverlayTrigger
+                                placement="top"
+                                overlay={EditPersonal}
+                            >
+        <img
+            className="edit-profile-btnss"
+            src={EditProfile}
+            alt="Edit"
+           style={{height:'20px', width:'auto',cursor: "pointer"}}
+           onClick={showPersonalModal}
+        />
+    </OverlayTrigger>
+                </p>
                 <table>
                     <tr>
                         <th></th>
@@ -203,39 +218,25 @@ function MyDetails() {
                     </tr>
                     <tr>
                         <td
+                        className='Personal_details_key'
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%'
                             }}
                         >
-                            Aadhaar Card No.:
+                            Aadhaar Card No:
                         </td>
                         <td style={{ color: '#051F50', fontSize: '12px' }}>
                             {CandidateProfile?.data?.personal_details
                                 ?.aadhar_number || 'N/A'}
                         </td>
-                        <td>
-                            <OverlayTrigger
-                                placement="top"
-                                overlay={EditPersonal}
-                            >
-                                <img
-                                    className="edit-profile-btn"
-                                    src={EditProfile}
-                                    alt=""
-                                    height="20px"
-                                    onClick={showPersonalModal}
-                                />
-                            </OverlayTrigger>
-                        </td>
+                       
                     </tr>
                     <tr>
                         <td
                             style={{
                                 color: '#AEAEAE',
-                                fontSize: '12px',
-                                width: '30%'
+                                fontSize: '12px'
                             }}
                         >
                             PAN:
@@ -250,7 +251,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -266,7 +266,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -282,7 +281,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -298,7 +296,7 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
+                               
                                 padding: '2px'
                             }}
                         >
@@ -314,7 +312,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -330,7 +327,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -346,7 +342,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >
@@ -362,7 +357,6 @@ function MyDetails() {
                             style={{
                                 color: '#AEAEAE',
                                 fontSize: '12px',
-                                width: '30%',
                                 padding: '2px'
                             }}
                         >

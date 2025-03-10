@@ -7,9 +7,17 @@ const Details = () => {
     const { id } = useParams();
     const [details, setDetails] = useState(null);
     const getJobDetails = async () => {
+        const token = localStorage.getItem('Candidate_token');
+
         try {
             const response = await axios.get(
-                `${BaseUrl}/candidate/basic_details/${id}`
+                `${BaseUrl}/candidate/basic_details/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
 
             setDetails(response?.data[0]);

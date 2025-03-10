@@ -15,7 +15,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import BaseUrl from '../../../../services/BaseUrl';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../../analytics";
 const SavedJobs = () => {
     const { applyTo_job } = useContext(SearchJobContext);
     const { name } = useParams();
@@ -93,6 +93,10 @@ const SavedJobs = () => {
       }
   
     const ApplyWithAIResume=async()=>{
+        if (CandidateProfile?.profileCompletionPercentage !== 100) {
+            setShowModal(true);
+            return;
+        }
       navigate(`/profile-candidate/resume/${deleteId}`)
     }
 
@@ -120,7 +124,14 @@ const SavedJobs = () => {
             const userId = decodedToken?._id;
         try{
             const response = await axios.put(
-                `${BaseUrl}/candidate/remove/saved_job/${userId}/${deleteId}`
+                `${BaseUrl}/candidate/remove/saved_job/${userId}/${deleteId}`,
+                {},
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if(response.status==200|| response.status==201){
                 toast.success('The job has been removed successfully.');
@@ -130,6 +141,11 @@ const SavedJobs = () => {
           toast.error(error.data.error)
         }
     };
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Saved  Job", "BoardSearch Candidate");
+      }, []);
 
     return (
         <>
@@ -523,13 +539,13 @@ const SavedJobs = () => {
                         </div>
                     ))
                 ) : (
-                    <div className="no-jobs-container">
+                    <div className="no-jobs-containers">
                         <span>No jobs have been saved.</span>
                     </div>
                 )}
             </div>
             {showModal && (
-                <ProfileCompletionModal onClose={() => setShowModal(false)} />
+                <ProfileCompletionModal onClose={() => setShowModal(false)}  setShowModal={setShowModal}/>
             )}
         </>
     );

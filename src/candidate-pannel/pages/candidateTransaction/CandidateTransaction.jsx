@@ -4,7 +4,7 @@ import arrowdown from '../../../assets/images/arrowdown.png';
 import { TransactionContext } from '../../../context/candidateContext/TransactionContext';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const CandidateTransaction = () => {
     const { transactionData, fetch_transaction } =
         useContext(TransactionContext);
@@ -65,6 +65,12 @@ const CandidateTransaction = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Transactions", "BoardSearch Candidate");
+      }, []);
+
     return (
         <>
             <Helmet>

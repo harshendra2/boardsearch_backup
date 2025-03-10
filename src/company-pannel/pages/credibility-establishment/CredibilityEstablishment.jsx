@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Loader from '../loader/Loader';
+import { initGA, trackEvent } from "../../../analytics";
 const CredibilityEstablishment = () => {
     const [CredibilityData, setCredibilityData] = useState(null);
     const [PAN, setPAN] = useState('');
@@ -71,7 +72,13 @@ const CredibilityEstablishment = () => {
             const cmpId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/credibility/status/${cmpId}`
+                    `${BaseUrl}company/credibility/status/${cmpId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }
                 );
 
                 setSubscription(response?.data);
@@ -85,7 +92,13 @@ const CredibilityEstablishment = () => {
         const cmpId = decodedToken?._id;
         try {
             const response = await axios.get(
-                `${BaseUrl}company/credibility/status/${cmpId}/${PAN}`
+                `${BaseUrl}company/credibility/status/${cmpId}/${PAN}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             return response?.data;
         } catch (error) {}
@@ -116,7 +129,13 @@ const CredibilityEstablishment = () => {
             const companyId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/offer_verifier/${companyId}/${PAN}`
+                    `${BaseUrl}company/offer_verifier/${companyId}/${PAN}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }
                 );
                 setCredibilityData(response?.data);
                 if (response.status == 200 || response.status == 201) {
@@ -172,6 +191,12 @@ const CredibilityEstablishment = () => {
                 {
                     SubId: Id,
                     company_id
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
 
@@ -207,6 +232,12 @@ const CredibilityEstablishment = () => {
                     company_id: companyId,
                     sub_id: data?.sub_id,
                     paymentMethod: data?.payment_methods || 'UPI'
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
 
@@ -265,9 +296,17 @@ const CredibilityEstablishment = () => {
     }
 
     const handle_Credibility = async () => {
+        
+const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_credibility_establishment`
+                `${BaseUrl}company/get_credibility_establishment`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setModalShowhide(true);
             setLoading(false);
@@ -280,6 +319,12 @@ const CredibilityEstablishment = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Credibility Establishment", "BoardSearch Company");
+      }, []);
+
     return (
         <div className="CredibilityEstablishment">
             {PromoteLoading ? (

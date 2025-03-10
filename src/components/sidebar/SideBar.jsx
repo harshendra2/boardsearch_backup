@@ -529,9 +529,7 @@ const SideBar = () => {
                                                     marginLeft: '-8px'
                                                 }}
                                             >
-                                                {Identity && Identity.length > 10
-    ? Identity.substring(0, 10) + "..."
-    : Identity || "User"}
+                                                Profile
 
                                             </p>
                                         </Col>

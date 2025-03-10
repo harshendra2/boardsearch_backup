@@ -39,8 +39,8 @@
 }
 
 .edit-profile-btn {
-    margin-top: -26px;
-    margin-left: -100px;
+    /* margin-top: -26px; */
+    /* margin-left: -100px; */
     cursor: pointer;
 }
 .pdf-viewer {
@@ -64,8 +64,7 @@
     align-items: center;
     color: white;
 }
-.content-pdf {
-}
+
 .content-pdf p {
     margin-top: 8px;
     margin-left: 6px;
@@ -82,11 +81,21 @@
     margin-top: 40px;
     cursor: pointer;
 }
+
+.edit-profile-btnss{
+    margin-left:42%
+}
 @media (max-width: 575.98px) {
     .candidate-profile-btns button {
         margin-bottom: 10px;
     }
-    .edit-profile-btn {
-        margin-left: 0px;
+}
+
+@media (max-width: 390px) {
+   
+    .edit-profile-btnss{
+        margin-left:35%;
     }
 }
+
+

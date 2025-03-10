@@ -178,6 +178,7 @@ const SendMail = () => {
                 <input
                     style={{ display: 'none' }}
                     type="file"
+                    accept=".pdf,.png,.jpg,.jpeg"
                     ref={fileRef}
                     onChange={handleFileChange}
                 />

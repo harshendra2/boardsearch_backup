@@ -20,9 +20,17 @@ const GreenBatch = () => {
     const [orderId, SetOrderID] = useState('');
     const naviagte = useNavigate();
     const handle_promote_job = async () => {
+        
+const token = localStorage.getItem('companyToken');
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get/green_batch`
+                `${BaseUrl}company/get/green_batch`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
             setData(response?.data[0]);
         } catch (error) {
@@ -45,7 +53,13 @@ const GreenBatch = () => {
 
             const response = await axios.post(
                 `${BaseUrl}company/green_tick/payment`,
-                { company_id, green_id }
+                { company_id, green_id },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                }
             );
 
             if (response?.status === 200) {
@@ -82,6 +96,12 @@ const GreenBatch = () => {
                     orderId: data?.order_id,
                     company_id: companyId,
                     paymentMethod: data?.payment_methods
+                },
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
                 }
             );
 

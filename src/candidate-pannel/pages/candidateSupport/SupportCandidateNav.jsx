@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect} from 'react';
 import { use } from 'react';
 import { Button, Col } from 'react-bootstrap';
 import CandidateSupport from './CandidateSupport';
@@ -7,9 +7,14 @@ import { CandidateSupportContext } from '../../../context/candidateContext/Candi
 import MailTickets from './MailTickets/MailTickets';
 import { useSupport } from '../../../context/SupportContext';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const SupportCandidateNav = () => {
     const { hide, setHide } = useContext(CandidateSupportContext);
+
+    useEffect(() => {
+        initGA();
+        trackEvent("Button", "Support", "BoardSearch Candidate");
+      }, []);
     return (
         <div>
             <Helmet>

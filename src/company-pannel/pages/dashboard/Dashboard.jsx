@@ -66,7 +66,13 @@ const Dashboard = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}company/subscription/count/${userId}/${startDate}/${EndDate}`
+                    `${BaseUrl}company/subscription/count/${userId}/${startDate}/${EndDate}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }
                 );
                 setDashboardData(response?.data);
             } catch (error) {}

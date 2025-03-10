@@ -371,7 +371,7 @@ const AppliedJobs = () => {
                             </div>
                         ))
                     ) : (
-                        <div className="no-jobs-container">
+                        <div className="no-jobs-containerss">
                             <span>You haven't applied to any jobs yet.</span>
                         </div>
                     )}

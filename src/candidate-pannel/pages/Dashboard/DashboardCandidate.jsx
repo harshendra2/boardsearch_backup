@@ -22,6 +22,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { Helmet } from 'react-helmet';
 import BuyPlanDesign from '../../../components/BuyplanDesign/BuyPlanDesign';
+import { initGA, trackEvent } from "../../../analytics";
 
 const DashboardCandidate = () => {
     const yearStartISO = moment().startOf('year').toISOString();
@@ -44,7 +45,13 @@ const DashboardCandidate = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/dashboard/${userId}`
+                    `${BaseUrl}candidate/dashboard/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setDashboardData(response?.data);
             } catch (error) {}
@@ -61,7 +68,13 @@ const DashboardCandidate = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/dashboard/job/status/${userId}/${startDate}/${EndDate}`
+                    `${BaseUrl}candidate/dashboard/job/status/${userId}/${startDate}/${EndDate}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setApiResponse(response?.data);
                 if (response.status == 200 || response.status == 201) {
@@ -124,7 +137,13 @@ const DashboardCandidate = () => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/dashboard/job/status/${userId}/${startDate}/${EndDate}`
+                    `${BaseUrl}candidate/dashboard/job/status/${userId}/${startDate}/${EndDate}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setApiResponse(response?.data);
             } catch (error) {}
@@ -169,6 +188,11 @@ const DashboardCandidate = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(()=>{
+        initGA(); 
+        trackEvent("Button", "Dashboard", "BoardSearch Candidate");
+    },[])
     return (
         <>
             <Helmet>

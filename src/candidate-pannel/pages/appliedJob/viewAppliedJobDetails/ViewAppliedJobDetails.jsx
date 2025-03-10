@@ -39,9 +39,16 @@ const ViewAppliedJobDetails = () => {
     };
 
     const fetchAppliedDetails = async () => {
+        const token = localStorage.getItem('Candidate_token');
         try {
             const response = await axios.get(
-                `${BaseUrl}candidate/job_details/flow/${id}`
+                `${BaseUrl}candidate/job_details/flow/${id}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             setAppliedJOb(response?.data);
         } catch (error) {}

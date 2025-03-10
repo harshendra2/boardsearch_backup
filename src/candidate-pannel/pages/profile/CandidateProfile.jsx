@@ -26,7 +26,7 @@ import { CandidateProfileContext } from '../../../context/candidateContext/Candi
 import ProfileEdit from './myDetails/profileEdit/ProfileEdit';
 import CandidateProfileComplete from '../../../components/dynamicProgress/CandidateProfileComplete';
 import { Helmet } from 'react-helmet';
-
+import { initGA, trackEvent } from "../../../analytics";
 const CandidateProfile = () => {
     const {
         CandidateProfile,
@@ -123,6 +123,11 @@ const CandidateProfile = () => {
     useEffect(() => {
         rendering();
     }, []);
+
+    useEffect(() => {
+        initGA();  // Initialize Google Analytics
+        trackEvent("Button", "Profile", "BoardSearch Candidate");
+      }, []);
     return (
         <>
             <Helmet>

@@ -65,7 +65,13 @@ const ProfileEdit = () => {
             const id = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/profile/${id}`
+                    `${BaseUrl}candidate/profile/${id}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
 
                 const { summary, profileUrl } = response?.data?.data;
@@ -96,7 +102,13 @@ const ProfileEdit = () => {
         try {
             const response = await axios.put(
                 `${BaseUrl}candidate/profile/add_summary/${userId}`,
-                data
+                data,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
 
             if (response?.status === 200 || response?.status === 201) {

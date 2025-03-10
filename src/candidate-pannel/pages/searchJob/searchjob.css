@@ -143,11 +143,11 @@
     line-height: 18px;
 }
 
-.no-jobs-container {
+.no-jobs-containers {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 16rem;
+    margin-left: 18rem;
     height: 60vh;
     text-align: center;
     font-size: 2rem;
@@ -156,7 +156,7 @@
     opacity: 0.8;
 }
 
-.no-jobs-container span {
+.no-jobs-containers span {
     padding: 20px;
     border: 2px solid #3b96e1;
     border-radius: 8px;
@@ -164,6 +164,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #3b96e1;
 }
+
 .search-btn {
     border-radius: 8px;
     width: 80px;
@@ -205,6 +206,9 @@
         margin-left: 0px;
         padding: 20px;
     }
+    .no-jobs-containers {
+        margin-left:1rem; 
+    }
 }
 
 @media (min-width:300px) and (max-width:736px) {
@@ -222,6 +226,10 @@
         width: 100%;
         overflow-x: auto; /* Enables horizontal scrolling */
     }
+
+    .no-jobs-containers {
+        margin-left:2px; 
+    }
     
    
 }
@@ -235,7 +243,9 @@
     margin-top: 10px;
     border-radius: 12px;
     }
-   
+    .no-jobs-containers {
+        margin-left:7rem; 
+    }
    
 }
 
@@ -248,7 +258,8 @@
     margin-top: 10px;
     border-radius: 12px;
     }
-   
+
+
    
 }
 

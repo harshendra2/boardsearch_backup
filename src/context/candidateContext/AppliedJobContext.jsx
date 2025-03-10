@@ -24,7 +24,13 @@ export const AppliedJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/appliedjob/${userId}/${currentPage}/${DEFAULT_PAGE_SIZE}/${seletedValue}`
+                    `${BaseUrl}candidate/appliedjob/${userId}/${currentPage}/${DEFAULT_PAGE_SIZE}/${seletedValue}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 const { data, page } = response?.data || {};
 
@@ -68,7 +74,13 @@ export const AppliedJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}/candidate/savedjob/${userId}`
+                    `${BaseUrl}/candidate/savedjob/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 let data = response?.data?.data;
                 let page = response?.data?.page;
@@ -106,7 +118,14 @@ export const AppliedJobProvider = ({ children }) => {
                 const userId = decodedToken?._id;
                 try {
                     const response = await axios.post(
-                        `${BaseUrl}candidate/jobapply_resume/${userId}/${jobId}`
+                        `${BaseUrl}candidate/jobapply_resume/${userId}/${jobId}`,
+                        {},
+                        {
+                            headers: {
+                                authorization: `Bearer ${token}`
+        
+                            }
+                        }  
                     );
                     if (response.status == 200 || 201) {
                         toast.success('Job Applied successfully ');
@@ -126,7 +145,14 @@ export const AppliedJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.put(
-                    `${BaseUrl}candidate/applicent/reject_offer/${jobId}/${userId}`
+                    `${BaseUrl}candidate/applicent/reject_offer/${jobId}/${userId}`,
+                    {},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 if (response.status == 200 || 201) {
                     toast.success('Offer letter rejected successfully');
@@ -146,7 +172,14 @@ export const AppliedJobProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.put(
-                    `${BaseUrl}candidate/applicent/accept_offer/${jobId}/${userId}`
+                    `${BaseUrl}candidate/applicent/accept_offer/${jobId}/${userId}`,
+                    {},
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    }  
                 );
                 if (response.status == 200 || 201) {
                     toast.success('Offer letter Accepted successfully');

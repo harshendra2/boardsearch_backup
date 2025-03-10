@@ -63,7 +63,14 @@ function Education() {
         const user_id = decodedToken?._id;
         try {
             const response = await axios.delete(
-                `${BaseUrl}candidate/profile/delete_education/${user_id}/${education_id}`
+                `${BaseUrl}candidate/profile/delete_education/${user_id}/${education_id}`,
+                {
+                    data:{},
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             if (response?.status == 200 || response?.status == 201) {
                 toast.success('Education Deleted');
@@ -134,7 +141,7 @@ function Education() {
                                     >
                                         Highest level of education:
                                     </td>
-                                    <td className="data">
+                                    <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                         {highest_education || 'N/A'}
                                     </td>
                                 </tr>
@@ -148,7 +155,7 @@ function Education() {
                                     >
                                         Boards represented names:
                                     </td>
-                                    <td className="data">
+                                    <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
                                         {board_represent || 'N/A'}
                                     </td>
                                 </tr>
@@ -162,7 +169,7 @@ function Education() {
                                     >
                                         Book Published/Article:
                                     </td>
-                                    <td className="data ">
+                                    <td className="data " style={{ color: '#051F50', fontSize: '12px' }}>
                                         {articles || 'N/A'}
                                     </td>
                                 </tr>
@@ -212,28 +219,28 @@ function Education() {
                                 <>
                                     <div className="education-card" key={index}>
                                         <div className="eduction-degree-name">
-                                            <h4>{item?.school}</h4>{' '}
+                                            <h4 style={{ color: '#051F50', fontSize: '12px' }}>{item?.school||'N/A'}</h4>{' '}
                                         </div>
 
                                         <div className="eduction-details">
-                                            <p>{item?.degree}</p>
+                                            <p style={{ color: '#051F50', fontSize: '12px' }}>{item?.degree||'N/A'}</p>
                                             <ul>
-                                                <li>{item?.Field_study}</li>
+                                                <li style={{ color: '#051F50', fontSize: '12px' }}>{item?.Field_study||'N/A'}</li>
                                             </ul>
                                         </div>
                                         <div className="eduction-time">
-                                            <p>
+                                            <p style={{ color: '#051F50', fontSize: '12px' }}>
                                                 {formatDate(item?.start_date)}
                                             </p>{' '}
                                             <span className="mx-2">-</span>{' '}
-                                            <p>{formatDate(item?.end_date)}</p>
+                                            <p style={{ color: '#051F50', fontSize: '12px' }}>{formatDate(item?.end_date)}</p>
                                         </div>
-                                        <p className="grade">
+                                        <p className="grade" style={{ color: '#051F50', fontSize: '12px' }}>
                                             Grade:&nbsp;{item?.grade}
                                         </p>
                                         <p className="description">
                                             Description:&nbsp;
-                                            {item?.description}
+                                            {item?.description||'N/A'}
                                         </p>
                                         <div className="eduction-pdf delete-eduction">
                                             <div></div>

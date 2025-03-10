@@ -23,7 +23,13 @@ export const CandidateSupportProvider = ({ children }) => {
             const userId = decodedToken?._id;
             try {
                 const response = await axios.get(
-                    `${BaseUrl}candidate/get_issue/${userId}`
+                    `${BaseUrl}candidate/get_issue/${userId}`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+    
+                        }
+                    } 
                 );
                 setSupportData(response?.data?.data);
             } catch (error) {}
@@ -56,7 +62,13 @@ export const CandidateSupportProvider = ({ children }) => {
             const decodedToken = jwtDecode(token);
             const userId = decodedToken?._id;
             const response = await axios.get(
-                `${BaseUrl}candidate/get_mail_issue/${userId}`
+                `${BaseUrl}candidate/get_mail_issue/${userId}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+
+                    }
+                } 
             );
             setMailData(response?.data?.data);
         } catch (error) {

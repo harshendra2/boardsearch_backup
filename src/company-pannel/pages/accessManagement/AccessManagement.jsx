@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
     Form,
     Button,
@@ -12,6 +12,7 @@ import './accessManagment.css';
 import accessWhite from '../../../assets/images/accessWhite.png';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { initGA, trackEvent } from "../../../analytics";
 const AccessManagement = () => {
     const [activeButton, setActiveButton] = useState('add-new-user');
     const naviggate = useNavigate();
@@ -25,6 +26,12 @@ const AccessManagement = () => {
             naviggate('add-new-user');
         }
     };
+
+    useEffect(() => {
+        initGA(); 
+        trackEvent("Button", "AccessManagement", "BoardSearch Company");
+      }, []);
+
     return (
         <div className="access">
               <Helmet>
