@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Modal, Table } from 'react-bootstrap';
+import { Button, Modal, Table ,Row,Col} from 'react-bootstrap';
 import './application.css';
 import View from '../../../../../assets/images/View.png';
+import ExcelIcon from '../../../../../assets/images/ExcelIcon.png';
+import download from '../../../../../assets/images/DownloadIcon.png';
 import { CreateJobContext } from '../../../../../context/CreateJobContext';
 import { useLocation } from 'react-router-dom';
 import { useSupport } from '../../../../../context/SupportContext';
 import DisplayImage from '../../../../../components/DisplayImage/DisplayImage';
-
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import BaseUrl from '../../../../../services/BaseUrl';
 const Applications = () => {
     const {
         viewJobDesciptionData,
@@ -90,6 +94,37 @@ const Applications = () => {
     useEffect(() => {
         fetch_Job_applicant();
     }, [location]);
+
+
+    const DownLoadCandidateCV = async () => {
+        const jobid = localStorage.getItem('job_id');
+    
+        try {
+            const response = await axios.get(
+                `${BaseUrl}company/get_Canidate_cv/${jobid}`,
+                {
+                    responseType: 'blob'
+                }
+            );
+    
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Applied_Candidate.xlsx'); 
+            document.body.appendChild(link);
+            link.click();
+    
+            // Clean up
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            toast.error(error?.response?.data?.error || "Download failed!");
+        }
+    };
+
+
+
+    
     return (
         <>
             <Modal show={isModalVisible} onHide={showModal} centered>
@@ -109,7 +144,47 @@ const Applications = () => {
                 </Modal.Footer>
             </Modal>
             <div className="applications mt-2">
-                <Table bordered responsive>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Row>
+                        <Col
+                            xs={12}
+                            className="d-flex align-items-center justify-content-center"
+                            onClick={DownLoadCandidateCV}
+                        >
+                            <Button
+                            size='sm'
+                                style={{
+                                    background: 'rgb(120 187 242)',
+                                    borderColor: 'white',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-around',
+                                    borderRadius: '12px ',
+                                    border: 'none',
+                                    background: 'rgb(120 187 242)',
+                                    color: 'black',
+                                    fontSize:'0.9rem'
+                                }}
+                            >
+                                <img
+                                    width="20vw"
+                                    src={ExcelIcon}
+                                    alt="icon"
+                                    style={{ marginRight: '10px' }}
+                                />
+                                Download CV
+                                <img
+                                    width="20vw"
+                                    src={download}
+                                    alt="icon"
+                                    style={{ marginLeft: '10px' }}
+                                />
+                            </Button>
+                        </Col>
+                    </Row>
+    </div>
+                                      
+                <Table style={{marginTop:'10px'}} bordered responsive>
                     <thead>
                         <tr style={{ borderTop: 'none' }}>
                             <th

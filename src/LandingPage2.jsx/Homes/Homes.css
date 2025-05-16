@@ -1,0 +1,124 @@
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+.home-conatiner {
+    display: flex;
+    flex-wrap:wrap;
+    background-color:#daebf7;
+    position: relative;
+    overflow: visible;
+}
+.home-conatents {
+    width: 50%;
+}
+.home-image-left {
+    width: 50%;
+}
+.home-p {
+    font-size:35px;
+    width: 116%;
+    margin-top: 80px;
+    color: #1E3449;
+}
+
+.home-buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    position: absolute;
+    bottom: -23px;
+    left:20%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.home-buttons button {
+    font-size:1.2rem;
+    font-weight: 700;
+    width:210px;
+    border-radius: 29px;
+    padding: 10px 30px;
+    background:#1E3449;
+    color:white;
+}
+.home-buttons button:hover {
+    background-color: #3590CE;
+}
+
+.home-image-left{
+    position: absolute;
+    bottom: -60px; /* Adjust this value to control how much the buttons are outside the container */
+    left:50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.home-counts {
+    margin-top: 60px;
+    width: 80%;
+    display: flex;
+    gap: 90px;
+}
+.counts-home-card {
+    color: white;
+}
+.counts-home-card h2 {
+    font-size: 1.6rem;
+}
+.counts-home-card p {
+    margin-top: -10px;
+}
+.home-span-span {
+    width: 100%;
+    color: #1E3449;
+}
+
+@media (max-width: 575.98px) {
+    .home-conatents {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .home-p {
+        width: 100%;
+    }
+    .home-image-left img{
+ display: none;
+    }
+    .home-span {
+        width: 100%;
+    }
+    .home-counts {
+        width: 100%;
+    }
+    .counts-home-card {
+        text-align: center;
+    }
+    .home-buttons{
+        left: 50%;
+         gap: 10px;
+    }
+    .home-buttons button{
+        width:160px;
+        font-size: 0.8rem;
+    }
+
+    .home-p{
+        font-size:25px;
+    }
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%); 
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .home-image-left {
+    animation: slideInFromRight 1s ease-out forwards; 
+  }

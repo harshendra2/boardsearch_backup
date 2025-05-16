@@ -1,0 +1,142 @@
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+body {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+.background-container{
+background-size:cover ;
+background-position: center;
+min-height: 100vh;
+width: 100%;
+position: relative;
+}
+
+.Sub_container{
+   background-color:rgba(53, 144, 206, 0.7) ;
+   width:100%;
+   min-height:100vh;
+   position:absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.heading_container{
+ margin-left:-600px;
+  margin-top:10px;
+}
+.headdings{
+    /* font-size:35px; */
+    font-size:1.9rem;
+    font-weight: bolder;
+    color: white;
+}
+
+.Form_main_container{
+    display:flex;
+     flex-direction:row;
+     justify-content: center;
+     gap:70px;
+}
+
+.Form_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+
+.FormInput{
+    width:450px;
+    height:50px;
+    background-color:#D9D9D975;
+    border:1px solid #ccc ;
+    color:#000;
+    padding:10px;
+    font-size: 16px;
+    background-color: #D9D9D975 !important;
+   }
+   
+   .FormInput::placeholder {
+       color: white !important;
+       opacity: 1;
+       font-size:1rem;
+     }
+
+     .Button{
+        width: 210px;
+        height: 44px;
+        border-radius: 29px;
+        background-color: #1E3449;
+        color: white;
+        font-weight: bolder;
+        font-size:1rem;
+     }
+
+     .form_aggrements{
+        display: none;
+     }
+     .Button_cont{
+        margin-top: 30px;
+     }
+
+
+@media (max-width: 575.98px) {
+    .heading_container{
+       margin-left: -10px;
+       margin-top:-10px;
+    }
+    .background-container{
+        height:1100px;
+    }
+    .Sub_container{
+        height:1100px;
+    }
+
+    .Form_main_container{
+        display:flex;
+         flex-direction:column;
+         justify-content: center;
+         gap:40px;
+         margin-left: 30px;
+    }
+
+    .form_aggrement{
+        display:none;
+    }
+
+    .form_aggrements{
+        display: block;
+     }
+
+     .FormInput{
+        width:90%;
+        height:50px;
+        background-color:#D9D9D975;
+        border:1px solid #ccc ;
+        color:#000;
+        padding:10px;
+        font-size: 16px;
+       }
+
+       .Button_cont{
+        margin-top:5px;
+        align-items: center;
+        text-align: center;
+     }
+
+     .heading_container{
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+        align-items: center;
+        text-align: center;
+    }
+  }

@@ -27,7 +27,8 @@ const EditNewJob = () => {
     const navigate = useNavigate();
     const {
         SetEditShow,
-        EditId
+        EditId,
+        fetch_job_status
     } = useContext(CreateJobContext);
     const [createJobData, setcreateJobData] = useState({
         job_title: '',
@@ -151,9 +152,14 @@ const EditNewJob = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        if (createJobData.salaryType == '') {
-            toast.error('Please select Salary type');
-            return;
+        // if (createJobData.salaryType == '') {
+        //     toast.error('Please select Salary type');
+        //     return;
+        // }
+
+        if(skills.length==0){
+                    toast.error('Please add atleast one skills');
+                    return;
         }
         const jobDataWithSkillsAndDescription = {
             ...createJobData,
@@ -189,6 +195,7 @@ const EditNewJob = () => {
                 if (response?.status == 201 || response?.status == 200) {
                     toast.success('Job edited successfully');
                     SetEditShow(false);
+                     await fetch_job_status();
                 }
             } catch (error) {
                 const customError = error?.response?.data?.error;
@@ -284,9 +291,13 @@ const EditNewJob = () => {
             'job_type',
             'work_type',
             'education',
-            'country',
-            'salaryType'
+            'country'
         ];
+
+        if(skills.length==0){
+            toast.error('Please add atleast one skills');
+            return;
+          }
 
         const missingFields = requiredFields.filter(
             field => !createJobData[field] || createJobData[field]== ''
@@ -424,11 +435,11 @@ const EditNewJob = () => {
                                     onChange={handleFormChange}
                                 />
                                 <Form.Select
-                                    required
                                     name="salaryType"
                                     value={createJobData?.salaryType}
                                     onChange={handleFormChange}
                                 >
+                                     <option value="">Select</option>
                                     <option value="a year">Year</option>
                                     <option value="a month">Month</option>
                                 </Form.Select>

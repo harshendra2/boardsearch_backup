@@ -102,19 +102,35 @@ const EditBasicDetails = () => {
         return linkedInRegex.test(linkedin);
     };
 
+    const validateLink = link=> {
+        const linkRegex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\S*)?$/;
+        return linkRegex.test(link);
+    };
+
+    const validateName=name=>{
+        const NameRegex =  /^[a-zA-Z\s]{2,50}$/;
+        return NameRegex.test(name);
+    }
+
     // Handle form submission
     const handleSubmit = async e => {
         e.preventDefault();
-        // const Data = new FormData();
-        // Data.append('other_profile', other_profile);
-        // Data.append('email', formData?.email);
-        // Data.append('mobile', formData?.mobile);
-        // Data.append('name', formData?.name);
-        // Data.append('linkedIn', formData?.linkedIn);
+        const hasInvalidLink = other_profile.some((temp) => !validateLink(temp?.link));
+        if (hasInvalidLink) {
+            toast.error("Please provide a valid link");
+            return;
+        }
+
+        const hasInvalidName = other_profile.some((temp) => !validateName(temp?.profile_name));
+        if (hasInvalidName) {
+            toast.error("Please provide a valid profile name");
+            return;
+        }
+
         const token = localStorage.getItem('Candidate_token');
         const combinedData = {
-            ...formData, // Spread the formData (email, phone, linkedin)
-            other_profile: other_profile // Add other_profile array to the combined object
+            ...formData,
+            other_profile: other_profile 
         };
         if(!isValid){
             toast.error("Please enter a valid phone number.");
@@ -153,7 +169,7 @@ const EditBasicDetails = () => {
             mobile: validatePhone(formData.phone)
                 ? ''
                 : 'Phone number must be 10 digits.',
-            linkedIn: validateLinkedIn(formData.linkedin)
+            linkedIn: validateLinkedIn(formData.linkedIn)
                 ? ''
                 : 'Invalid LinkedIn profile URL.'
         };
@@ -440,15 +456,6 @@ const EditBasicDetails = () => {
                         </Button>
                     </div>
                 </Form>
-
-                {/* {validated &&
-                    !errors.email &&
-                    !errors.phone &&
-                    !errors.linkedin && (
-                        <Alert variant="success" className="mt-4">
-                            Form is valid!
-                        </Alert>
-                    )} */}
             </div>
         </>
     );

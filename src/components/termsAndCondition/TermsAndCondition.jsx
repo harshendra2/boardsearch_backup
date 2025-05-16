@@ -27,7 +27,7 @@ const TermsAndCondition = () => {
             const response = await axios.get(
                 `${BaseUrl}company/get/terms_privacy`
             );
-            setFetchedTerms(response?.data);
+            setFetchedTerms(response?.data?.TermsImage);
         } catch (error) {}
     };
 
@@ -40,7 +40,7 @@ const TermsAndCondition = () => {
         // if (fileExtension === 'pdf') {
             return (
                 <iframe
-                    src={Terms}
+                    src={tersmsData}
                     width="100%"
                     height="100vh"
                 ></iframe>
@@ -67,7 +67,7 @@ const TermsAndCondition = () => {
     useEffect(() => {
         // Trigger the slide-up effect after the component mounts
         setIsVisible(true);
-        //fetchTerems();
+        fetchTerems();
     }, []);
     return (
         <div className={`slide-up ${isVisible ? 'active' : ''}`}>

@@ -17,6 +17,8 @@ const EditWorkDetails = () => {
     const [workDetails, setWorkDetails] = useState({
         industry: '',
         aspiring_position: '',
+        board_represent:'',
+        Current_Designation:'',
         work_experience: '',
         career_highlight: '',
         recognation: '',
@@ -76,6 +78,8 @@ const EditWorkDetails = () => {
                 setWorkDetails({
                     industry: workdetails?.industry || '',
                     aspiring_position: workdetails?.aspiring_position || '',
+                    board_represent:workdetails?.board_represent || '',
+                    Current_Designation:workdetails?.Current_Designation || '',
                     work_experience: workdetails?.work_experience || '',
                     career_highlight: workdetails?.career_highlight || '',
                     recognation: workdetails?.recognation || '',
@@ -85,7 +89,9 @@ const EditWorkDetails = () => {
                     country: workdetails?.country || '',
                     skill: workdetails?.skill || ''
                 });
-            } catch (error) {}
+            } catch (error) {
+                
+            }
         }
     };
     const handle_Edit_submit = async e => {
@@ -94,6 +100,8 @@ const EditWorkDetails = () => {
         formData.append('file', resumeFile);
         formData.append('industry', workDetails?.industry);
         formData.append('aspiring_position', workDetails?.aspiring_position);
+        formData.append('board_represent', workDetails?.board_represent)
+        formData.append("Current_Designation",workDetails?.Current_Designation)
         formData.append('work_experience', workDetails?.work_experience);
         formData.append('career_highlight', workDetails?.career_highlight);
         formData.append('recognation', workDetails?.recognation);
@@ -187,6 +195,77 @@ const EditWorkDetails = () => {
                                     value={workDetails?.aspiring_position}
                                     onChange={e => handleInputChange(e)}
                                     placeholder="Enter Aspiring Position/Role"
+                                    style={{
+                                        marginTop: '1px',
+                                        fontSize: '0.8rem',
+                                        height: '34px',
+                                        border: '1.4px solid #AEAEAE',
+                                        marginLeft: '-10px'
+                                    }}
+                                />
+                            </Col>
+                        </Row>
+                    </Form.Group>
+                    <Form.Group controlId="Role"  style={{ marginTop: '3px' }}>
+                        <Form.Label
+                            style={{ fontSize: '0.8rem', fontWeight: '500' }}
+                        >
+                            Board represented name
+                        </Form.Label>
+                        <Row style={{ marginTop: '-6px' }}>
+                            <Col
+                                xs={12}
+                                style={{
+                                    border: 'none',
+
+                                    marginLeft: '10px',
+                                    borderRadius: '4px',
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Form.Control
+                                    type="text"
+                                    name="board_represent"
+                                    value={workDetails?.board_represent}
+                                    onChange={e => handleInputChange(e)}
+                                    placeholder="Enter  Boards represented name"
+                                    style={{
+                                        marginTop: '1px',
+                                        fontSize: '0.8rem',
+                                        height: '34px',
+                                        border: '1.4px solid #AEAEAE',
+                                        marginLeft: '-10px'
+                                    }}
+                                />
+                            </Col>
+                        </Row>
+                    </Form.Group>
+
+                    <Form.Group controlId="Role"  style={{ marginTop: '3px' }}>
+                        <Form.Label
+                            style={{ fontSize: '0.8rem', fontWeight: '500' }}
+                        >
+                            Current Designation
+                        </Form.Label>
+                        <Row style={{ marginTop: '-6px' }}>
+                            <Col
+                                xs={12}
+                                style={{
+                                    border: 'none',
+
+                                    marginLeft: '10px',
+                                    borderRadius: '4px',
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Form.Control
+                                    type="text"
+                                    name="Current_Designation"
+                                    value={workDetails?.Current_Designation}
+                                    onChange={e => handleInputChange(e)}
+                                    placeholder="Enter  Current Designation"
                                     style={{
                                         marginTop: '1px',
                                         fontSize: '0.8rem',

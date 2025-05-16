@@ -1,0 +1,40 @@
+.navBar_temp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 18px;
+    padding: 0 20px;
+}
+
+.Login_Button:hover{
+    background: #162a3d;
+}
+
+.nav-bar-top-right {
+    margin-left: auto; 
+    display: flex;
+    gap:10px;
+}
+
+.navBar_temp button {
+    font-size: 1rem;
+    font-weight: 700;
+    width: 150px;
+    border-radius: 29px;
+    padding: 10px 30px;
+    background: #1E3449;
+    color: white;
+}
+
+@media (max-width: 575.98px) {
+    .navBar_temp {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .nav-bar-top-right {
+        margin-left: 0;
+    }
+}

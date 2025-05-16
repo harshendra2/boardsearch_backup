@@ -418,6 +418,68 @@ const ViewCandidateDetails = () => {
                                             </p>
                                         </td>
                                     </tr>
+                                 
+                                    <tr className="mt-4">
+                                        <td
+                                            style={{
+                                                color: '#051F50',
+                                                fontSize: '0.8rem',
+                                                width: '20%',
+                                                verticalAlign: 'top'
+                                            }}
+                                        >
+                                             Board represented name:
+                                        </td>
+                                        <td
+                                            style={{
+                                                verticalAlign: 'top',
+                                                fontSize: '0.8rem'
+                                            }}
+                                        >
+                                            <p
+                                                style={{
+                                                    color: '#051F50',
+                                                    paddingRight: '20px'
+                                                }}
+                                            >
+                                                {candidate_detials?.workDetails
+                                                    ?.board_represent ||
+                                                    'N/A'}
+                                            </p>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr className="mt-4">
+                                        <td
+                                            style={{
+                                                color: '#051F50',
+                                                fontSize: '0.8rem',
+                                                width: '20%',
+                                                verticalAlign: 'top'
+                                            }}
+                                        >
+                                             Current Designation:
+                                        </td>
+                                        <td
+                                            style={{
+                                                verticalAlign: 'top',
+                                                fontSize: '0.8rem'
+                                            }}
+                                        >
+                                            <p
+                                                style={{
+                                                    color: '#051F50',
+                                                    paddingRight: '20px'
+                                                }}
+                                            >
+                                                {candidate_detials?.workDetails
+                                                    ?.Current_Designation ||
+                                                    'N/A'}
+                                            </p>
+                                        </td>
+                                    </tr>
+
                                     {/* <tr>
                                         <td
                                             style={{
@@ -930,35 +992,6 @@ const ViewCandidateDetails = () => {
                                             </p>
                                         </td>
                                     </tr>
-                                    <tr className="mt-4">
-                                        <td
-                                            style={{
-                                                color: '#051F50',
-                                                fontSize: '0.8rem',
-
-                                                verticalAlign: 'top'
-                                            }}
-                                        >
-                                            Boards represented name:
-                                        </td>
-                                        <td
-                                            style={{
-                                                verticalAlign: 'top',
-                                                fontSize: '0.8rem'
-                                            }}
-                                        >
-                                            <p
-                                                style={{
-                                                    color: '#051F50',
-                                                    paddingRight: '20px'
-                                                }}
-                                            >
-                                                {candidate_detials
-                                                    ?.educationDetails
-                                                    ?.board_represent || 'N/A'}
-                                            </p>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td
                                             style={{
@@ -1025,61 +1058,26 @@ const ViewCandidateDetails = () => {
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td
-                                            style={{
-                                                color: '#051F50',
-                                                fontSize: '0.8rem',
-                                                paddingRight: '20px'
-                                            }}
-                                        >
-                                            {candidate_detials?.educationDetails?.certificates?.map(
-                                                (item, index) => (
-                                                    <>
-                                                        <p
-                                                            style={{
-                                                                color: '#051F50'
-                                                            }}
-                                                        >
-                                                            {item?.Certificate}:
-                                                        </p>
-                                                    </>
-                                                )
-                                            )}
-                                        </td>
-                                        <td
-                                            style={{
-                                                fontSize: '0.8rem'
-                                            }}
-                                        >
-                                            <p>
-                                                {candidate_detials?.educationDetails?.certificates?.map(
-                                                    (item, index) => (
-                                                        <>
-                                                            <div
-                                                                className="pdf-view"
-                                                                key={index}
-                                                                onClick={() =>
-                                                                    handleCertificateOpen(
-                                                                        item?.image
-                                                                    )
-                                                                }
-                                                            >
-                                                                <div className="pdf">
-                                                                    PDF
-                                                                </div>
-                                                                <div className="pdf-text">
-                                                                    {
-                                                                        item?.Certificate
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    )
-                                                )}
-                                            </p>
-                                        </td>
-                                    </tr>
+                                    {candidate_detials?.educationDetails?.certificates?.map((item, index) => (
+  <tr key={index}>
+    <td
+      style={{
+        color: '#051F50',
+        fontSize: '0.8rem',
+        verticalAlign: 'top'
+      }}
+    >
+      {item?.Certificate}:
+    </td>
+    <td>
+      <div className="pdf-view" onClick={() => handleCertificateOpen(item?.image)}>
+        <div className="pdf">PDF</div>
+        <div className="pdf-text" style={{fontSize:"0.6rem"}}>{item?.Certificate.substring(0,20)}</div>
+      </div>
+    </td>
+  </tr>
+))}
+
                                 </table>
 
                                 {/* Education */}

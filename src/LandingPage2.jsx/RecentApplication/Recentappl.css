@@ -1,0 +1,118 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.home-recent {
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    position: relative; 
+    z-index: 1; /* Ensure it stays above other elements */
+  }
+  
+  .headding-body {
+    margin-top: 130px;
+    margin-left: 5px;
+    display: flex;
+  }
+  
+  .headding {
+    color: #1e3449;
+    font-size:35px;
+    font-weight:700;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  }
+  
+  .headding svg {
+    margin-left: -17%;
+    margin-top: -10%;
+    width: 100%;
+    height: 1.5px;
+    fill: #3590ce;
+  }
+  
+
+  .testimonials {
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding-bottom: 50px;
+    overflow: hidden;
+  }
+  
+  .testimonials-child {
+    width: 84%;
+    margin: 0px auto;
+    overflow: hidden;
+  }
+  
+  .restimonials-h1 {
+    text-align: center;
+  }
+  
+  .testimonials-card-div {
+    margin-top: -70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .testimonials-cards {
+    padding: 12px;
+    width: 280px;
+    border-radius: 6px;
+    background: white;
+    display: flex;
+    position: relative; /* Ensure cards are positioned correctly */
+  }
+  
+  .crads-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align image and text */
+    text-align: center;
+    width: 100%;
+  }
+  
+  .crads-profile div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures text stays under image */
+    justify-content: center;
+    width: 100%;
+  }
+  
+  
+  .align::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .align::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
+  
+  /* For Firefox */
+  .align {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+  }
+
+  
+  @media (max-width: 575.98px) {
+    .testimonials-card-div {
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .headding-body {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding-top: -40px;
+    }
+  }
+
+
+
+  

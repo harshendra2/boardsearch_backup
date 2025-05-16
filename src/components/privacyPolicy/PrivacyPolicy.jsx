@@ -6,7 +6,6 @@ import BaseUrl from '../../services/BaseUrl';
 import Privacy from "../../assets/images/Privacy.pdf"
 const PrivacyPolicy = () => {
     const navigate = useNavigate();
-    const locate = useLocation();
     const [tersmsData, setFetchedTerms] = useState(null);
 
     const fetchTerems = async () => {
@@ -14,7 +13,7 @@ const PrivacyPolicy = () => {
             const response = await axios.get(
                 `${BaseUrl}company/get/terms_privacy`
             );
-            setFetchedTerms(response?.data);
+            setFetchedTerms(response?.data?.privacy_image);
         } catch (error) {}
     };
     const renderContent = () => {
@@ -26,7 +25,7 @@ const PrivacyPolicy = () => {
         // if (fileExtension === 'pdf') {
             return (
                 <iframe
-                    src={Privacy}
+                    src={tersmsData}
                     frameBorder="0"
                     width="100%"
                     height="100vh"
@@ -54,9 +53,9 @@ const PrivacyPolicy = () => {
         
     };
 
-    // useEffect(() => {
-    //     fetchTerems();
-    // }, [locate]);
+    useEffect(() => {
+        fetchTerems();
+    }, []);
     return (
         <div>
             <div
@@ -87,3 +86,6 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+
+
+

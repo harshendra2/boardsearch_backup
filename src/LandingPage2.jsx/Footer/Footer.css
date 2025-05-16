@@ -1,0 +1,94 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+.Footer-background-container {
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.Footer_Sub_container {
+    background-color: #1a2740e8;
+    width: 100vw; /* Ensures full width without overflow */
+    height: 90vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px; /* Adds padding to prevent content from touching edges */
+    box-sizing: border-box;
+}
+
+.Foooter_section_container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    gap: 90px;
+    width: 100%;
+}
+
+.Footer_first_tab_container, .footer_last_tab_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:20px;
+    width: 400px;
+    max-width: 100%; /* Prevents elements from exceeding screen width */
+}
+
+.footer_contact_tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (max-width: 575.98px) {
+    .Foooter_section_container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .Footer_logo_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .Footer_logo {
+        width: 300px;
+    }
+
+    .Footer_container_details {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .footer_last_tab_container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+    }
+}

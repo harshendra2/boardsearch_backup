@@ -14,7 +14,6 @@ const EditEducation = () => {
     );
     const [educationData, setEducationData] = useState({
         highest_education: '',
-        board_represent: '',
         articles: '',
         certificates: []
     });
@@ -111,14 +110,12 @@ const EditEducation = () => {
             );
             const {
                 highest_education,
-                board_represent,
                 articles,
                 certificates
             } = response?.data?.education_details;
 
             setEducationData({
                 highest_education: highest_education || '',
-                board_represent: board_represent || '',
                 articles: articles || '',
                 certificates: certificates || []
             });
@@ -146,7 +143,6 @@ const EditEducation = () => {
 
         const formData = new FormData();
         formData.append('highest_education', educationData.highest_education);
-        formData.append('board_represent', educationData.board_represent);
         formData.append('articles', educationData.articles);
 
         for (let index = 0; index < rows.length; index++) {
@@ -157,7 +153,7 @@ const EditEducation = () => {
                 return;
             }
     
-            if (!cert?.image) {
+            if (!cert?.image&&!cert?.imageUrl) {
                 toast.error("Please upload the appropriate certificate file.");
                 return; 
             }
@@ -224,26 +220,6 @@ const EditEducation = () => {
                         value={educationData.highest_education}
                         onChange={handleInputChange}
                         placeholder="Ex: Degree"
-                        className="education-form"
-                        required
-                    />
-                </Form.Group>
-                <Form.Group
-                    controlId="boardRepresent"
-                    style={{ marginTop: '4px' }}
-                >
-                    <Form.Label
-                        className="edit-label-edu"
-                        style={{ fontSize: '0.8rem', fontWeight: '500' }}
-                    >
-                        Boards represented name
-                        <span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                        name="board_represent"
-                        placeholder="Enter Boards represented names"
-                        value={educationData.board_represent}
-                        onChange={handleInputChange}
                         className="education-form"
                         required
                     />

@@ -165,10 +165,16 @@ const CreateNewJob = () => {
 
         const decodedToken = jwtDecode(token);
         const companyId = decodedToken?._id;
-        if (createJobData.salaryType == '') {
-            toast.error('Please select Salary type');
+        // if (createJobData.salaryType == '') {
+        //     toast.error('Please select Salary type');
+        //     setModalShow(prev => !prev);
+        //     //setModalShow(false)
+        //     return;
+        // }
+
+        if(skills.length==0){
+            toast.error('Please add atleast one skills');
             setModalShow(prev => !prev);
-            //setModalShow(false)
             return;
         }
 
@@ -288,9 +294,13 @@ const CreateNewJob = () => {
             'job_type',
             'work_type',
             'education',
-            'country',
-            'salaryType'
+            'country'
         ];
+
+        if(skills.length==0){
+            toast.error('Please add atleast one skills');
+            return;
+        }
 
         const missingFields = requiredFields.filter(
             field => !createJobData[field] || createJobData[field].trim() === ''
@@ -431,7 +441,6 @@ const CreateNewJob = () => {
                             </Form.Label>
                             <Form.Label className="custom-input-group-label" style={{ marginLeft: "45%",display: isMobile ? "none" :null}} >
                             Select Salary Type
-                                <span className="text-danger">*</span>
                             </Form.Label>
                             <InputGroup
                                 size="sm"
@@ -446,7 +455,6 @@ const CreateNewJob = () => {
                                     onChange={handleFormChange}
                                 />
                                 <Form.Select
-                                    required
                                     name="salaryType"
                                     value={createJobData?.salaryType}
                                     onChange={handleFormChange}

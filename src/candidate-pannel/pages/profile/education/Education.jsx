@@ -153,20 +153,6 @@ function Education() {
                                             width: '56%'
                                         }}
                                     >
-                                        Boards represented names:
-                                    </td>
-                                    <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
-                                        {board_represent || 'N/A'}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style={{
-                                            color: '#AEAEAE',
-                                            fontSize: '0.8rem',
-                                            width: '56%'
-                                        }}
-                                    >
                                         Book Published/Article:
                                     </td>
                                     <td className="data " style={{ color: '#051F50', fontSize: '12px' }}>

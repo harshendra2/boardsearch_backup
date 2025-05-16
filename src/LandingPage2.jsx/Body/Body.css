@@ -1,0 +1,35 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+.body-container{
+    background-color:#1E3449;
+    width:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_contans{
+display: flex;
+flex-direction:row ;
+justify-content: center;
+gap: 50px;
+margin-top:50px;
+margin-bottom:20px;
+}
+
+
+@media (max-width: 575.98px) {
+    .body-container{
+       margin-top: 100px;
+    }
+    .MarkMan{
+        display:none;
+    }
+    .sub_contans{
+        flex-direction: column;
+        gap: 50px;
+    }
+  }
+  

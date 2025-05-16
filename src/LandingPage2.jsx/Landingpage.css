@@ -1,0 +1,4 @@
+.container-background {
+    background: #daebf7 url("path/to/your/image.jpg") no-repeat center center;
+    background-size: cover;
+  }

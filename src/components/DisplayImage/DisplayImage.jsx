@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Modal } from 'react-bootstrap';
 import { useSupport } from '../../context/SupportContext';
@@ -45,6 +45,13 @@ const DisplayImage = ({button}) => {
         } else {
         }
     };
+
+    useEffect(() => {
+        return () => {
+          setPdfGloble(null);
+          setImageGloble(null);
+        };
+      }, []); 
 
     return (
         <>

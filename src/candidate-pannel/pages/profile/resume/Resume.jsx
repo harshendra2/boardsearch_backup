@@ -19,6 +19,7 @@ import { toast } from 'react-toastify';
 import BaseUrl from '../../../../services/BaseUrl';
 import AIBaseUrl from '../../../../services/AI_BaseUrl';
 const Resume = () => {
+    
     const {id}=useParams();
     
     const { CandidateProfile } = useContext(CandidateProfileContext);
@@ -34,6 +35,10 @@ const Resume = () => {
     const navigate = useNavigate();
     // Generate Resume from Backend
     const GenerateResume = async () => {
+        if(CandidateProfile?.profileCompletionPercentage!=100){
+            toast.error("Please complete your profile before generating an AI resume.");
+            return
+        }
         const custom_id = CandidateProfile?.data?.custom_id;
         try {
             setLoading(true);
@@ -188,72 +193,125 @@ const Resume = () => {
         }
     };
 
-    const storeResume = async () => {
-        setApplyLoading(true);
-        const token = localStorage.getItem('Candidate_token');
-        const decodedToken = jwtDecode(token);
-            const userId = decodedToken?._id;
-        const base64Content = btoa(resume);
-        try{
-        let response=await axios.post(`${AIBaseUrl}pythonapi/generate-pdf`,
-            {html_base64:base64Content}
-        );
-        if(response.status==200||response.status==201){
-             const res= await axios.put(
-                    `${BaseUrl}candidate/stor/resume/${userId}`,
-                    {resume:response?.data},
-                    {
-                        headers: {
-                            authorization: `Bearer ${token}`
+    // const storeResume = async () => {
+    //     setApplyLoading(true);
+    //     const token = localStorage.getItem('Candidate_token');
+    //     const decodedToken = jwtDecode(token);
+    //         const userId = decodedToken?._id;
+    //     const base64Content = btoa(resume);
+    //     try{
+    //     let response=await axios.post(`${AIBaseUrl}pythonapi/generate-pdf`,
+    //         {html_base64:base64Content}
+    //     );
+    //     if(response.status==200||response.status==201){
+    //          const res= await axios.put(
+    //                 `${BaseUrl}candidate/stor/resume/${userId}`,
+    //                 {resume:response?.data},
+    //                 {
+    //                     headers: {
+    //                         authorization: `Bearer ${token}`
     
-                        }
-                    } 
-                );
+    //                     }
+    //                 } 
+    //             );
 
-                if (res?.status == 200 ||res?.status == 201) {
-                    const response = await axios.post(
+    //             if (res?.status == 200 ||res?.status == 201) {
+    //                 const response = await axios.post(
+    //                     `${BaseUrl}candidate/jobapply_resume/${userId}/${id}`,
+    //                     {},
+    //                     {
+    //                         headers: {
+    //                             authorization: `Bearer ${token}`
+        
+    //                         }
+    //                     } 
+    //                 );
+    //                 if (response.status == 200 ||response.status==201) {
+    //                     toast.success('Job Applied successfully ');
+    //                    navigate(-1)
+    //                 }
+    //                 setApplyLoading(false);
+    //             }
+    //     }
+    //     }catch(error){
+    //     toast.error(error?.response?.error);
+    //     }finally{
+    //         setApplyLoading(false)
+    //     }
+    // };
+
+
+    const storeResume = async () => {
+        try {
+            setApplyLoading(true);
+            const token = localStorage.getItem('Candidate_token');
+    
+            if (!token) {
+                toast.error("Authentication token missing!");
+                setApplyLoading(false);
+                return;
+            }
+    
+            let decodedToken;
+            try {
+                decodedToken = jwtDecode(token);
+            } catch (error) {
+                toast.error("Invalid token. Please log in again.");
+                setApplyLoading(false);
+                return;
+            }
+    
+            const userId = decodedToken?._id;
+            if (!userId) {
+                toast.error("User ID not found in token.");
+                setApplyLoading(false);
+                return;
+            }
+    
+            // Ensure resume is a valid string
+            if (!resume) {
+                toast.error("Resume data is missing.");
+                setApplyLoading(false);
+                return;
+            }
+    
+            const base64Content = btoa(resume);
+    
+            let response = await axios.post(`${AIBaseUrl}pythonapi/generate-pdf`, {
+                html_base64: base64Content
+            });
+    
+            if (response.status === 200 || response.status === 201) {
+                const res = await axios.put(
+                    `${BaseUrl}candidate/stor/resume/${userId}`,
+                    { resume: response?.data },
+                    {
+                        headers: { authorization: `Bearer ${token}` }
+                    }
+                );
+    
+                if (res?.status === 200 || res?.status === 201) {
+                    const jobApplyRes = await axios.post(
                         `${BaseUrl}candidate/jobapply_resume/${userId}/${id}`,
                         {},
                         {
-                            headers: {
-                                authorization: `Bearer ${token}`
-        
-                            }
-                        } 
+                            headers: { authorization: `Bearer ${token}` }
+                        }
                     );
-                    if (response.status == 200 || 201) {
-                        toast.success('Job Applied successfully ');
-                       navigate(-1)
+    
+                    if (jobApplyRes.status === 200 || jobApplyRes.status === 201) {
+                        toast.success("Job Applied successfully!");
+                        navigate(-1);
                     }
-                    setApplyLoading(false);
                 }
+            }
+        } catch (error) {
+            toast.error(error?.response?.data?.message || "Something went wrong");
+        } finally {
+            setApplyLoading(false);
         }
-        }catch(error){
-        toast.error(error?.response?.error);
-        }
-
-        // if (!token) {
-        //     return;
-        // } else {
-        //     const decodedToken = jwtDecode(token);
-        //     const userId = decodedToken?._id;
-        //     try {
-        //         const response = await axios.put(
-        //             `${BaseUrl}candidate/stor/resume/${userId}`,
-        //             {
-        //                 resume: base64Content
-        //             }
-        //         );
-
-        //         if (response?.status == 200 || response?.status == 201) {
-        //             setApplyLoading(false);
-        //         }
-        //     } catch (error) {
-        //         toast.error('Failed to apply Job');
-        //         setApplyLoading(false);
-        //     }
-        // }
     };
+    
 
     const NavigateToSavedJobs = async () => {
         let name = 'profile';

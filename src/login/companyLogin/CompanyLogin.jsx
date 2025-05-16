@@ -63,7 +63,7 @@ const CompanyLogin = () => {
             if (value.trim() === '') {
                 setEmailError('');
             } else {
-                const emailRegex = /^[a-z][^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailRegex = /^[a-z0-9][^\s@]*@[^\s@]+\.[^\s@]+$/i;
 
                 if (!emailRegex.test(value)) {
                     setEmailError('Please enter a valid email address.');

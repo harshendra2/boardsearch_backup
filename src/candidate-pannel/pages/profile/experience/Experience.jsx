@@ -409,6 +409,43 @@ const Experience = () => {
                                                     verticalAlign: 'top'
                                                 }}
                                             >
+                                             Boards represented name:
+                                            </td>
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
+                                                {CandidateProfile?.data
+                                                    ?.work_details
+                                                    ?.board_represent ||
+                                                    'N/A'}
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td
+                                                style={{
+                                                    color: '#AEAEAE',
+                                                    fontSize: '0.8rem',
+                                                    width: '50%',
+                                                    verticalAlign: 'top'
+                                                }}
+                                            >
+                                             Current Designation:
+                                            </td>
+                                            <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
+                                                {CandidateProfile?.data
+                                                    ?.work_details
+                                                    ?.Current_Designation ||
+                                                    'N/A'}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style={{
+                                                    color: '#AEAEAE',
+                                                    fontSize: '0.8rem',
+                                                    width: '50%',
+                                                    verticalAlign: 'top'
+                                                }}
+                                            >
                                                 Skills:
                                             </td>
                                             <td className="data" style={{ color: '#051F50', fontSize: '12px' }}>
