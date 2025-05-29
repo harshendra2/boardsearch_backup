@@ -273,7 +273,7 @@ const CandidateProfile = () => {
                                                 ?.aspiring_position
                                         }
                                     </p>
-                                    <div
+                                    {/* <div
                                         className="star-rating "
                                         style={{
                                             marginTop: '-22px',
@@ -298,7 +298,7 @@ const CandidateProfile = () => {
                                                 ★
                                             </span>
                                         ))}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="divice-loged-in"></div>
                             </div>

@@ -41,6 +41,7 @@
     "react-international-phone": "^4.5.0",
     "react-pdf": "^9.2.1",
     "react-quill": "^2.0.0",
+    "react-responsive": "^10.0.1",
     "react-router-dom": "^6.27.0",
     "react-scroll": "^1.9.0",
     "react-spinners": "^0.14.1",

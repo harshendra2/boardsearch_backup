@@ -68,7 +68,7 @@ our AI-powered platform has you covered.
             style={{
               backgroundColor: "white",
               width: "1.5px",
-              height: "350px",
+              height: "270px",
             }}></div>
 
                 {/* lastfooter */}

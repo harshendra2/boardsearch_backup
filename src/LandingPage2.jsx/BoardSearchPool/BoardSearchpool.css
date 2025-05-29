@@ -1,22 +1,8 @@
 body {
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
-body {
-  font-family: 'Nunito Sans', sans-serif;
-}
-body {
-  overflow-x: hidden; 
-}
-
-.home-recent {
-    background-color: white;
-    width: 100%;
-    height: 100vh;
-    position: relative; 
-    z-index: 1;
-}
-  
 .headding-body {
     margin-top:90px;
     margin-left: 5px;
@@ -38,98 +24,312 @@ body {
     fill: #3590ce;
 }
 
-.BoardSearch_data{
+
+.board-search-container {
+    position: relative;
+    z-index: 1;
+    margin-top: -100px;
+    padding-bottom: 50px;
+}
+
+.content-wrapper {
+    margin-top: 10px;
+}
+
+/* Ellipse decorations */
+.ellipse-top, .ellipse-bottom, .ellipse-left, .ellipse-lefts{
+    position: absolute;
+    z-index: 0;
+}
+
+.ellipse-top {
+    top: 0;
+    right: 0;
+    margin-top:500px;
+}
+
+.ellipse-bottom {
+    bottom: 0;
+    right: 0;
+    margin-top: 90rem;
+}
+
+.ellipse-left {
+    top: 100%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.ellipse-lefts{
+  top:100%;
+    left: 0;
+    transform: translateY(300%);
+}
+
+.ellipse-img {
+    margin-top: 600px;
+    width: 100px;
+    max-width: 130px;
+    height: auto;
+}
+
+/* Data sections */
+.BoardSearch_data,
+.BoardSearch_datas,
+.BoardSearch_datass {
     display: flex;
     justify-content: center;
-    margin-top:-120px;
-    gap: 60px;
-    align-items:center;
-    height: 100vh;
+    align-items: center;
+    gap: 40px;
+    margin: 50px 0;
+    flex-wrap: wrap;
 }
 
-.PoolImage{
-    width: 410px;
+.divider {
+    background-color: #1E3449;
+    width: 1.5px;
+    height: 350px;
+    flex-shrink: 0;
 }
 
-.BoardSearch_datas{
-    display: flex;
-    justify-content: center;
-    margin-top:-120px;
-    gap: 60px;
-    align-items:center;
-    height: 100vh;
+.PoolImage,
+.PoolImages {
+    width: 100%;
+    max-width: 410px;
+    height: auto;
 }
 
-.PoolImages{
-    width: 410px;
+.section-title {
+    color: #1E3449;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 900;
+    margin-bottom: 20px;
 }
 
-.BoardSearch_datass{
-    display: flex;
-    justify-content: center;
-    margin-top:-120px;
-    margin-bottom:-50px;
-    gap: 60px;
-    align-items:center;
-    height: 100vh;
+.data-list1,.data-list2,.data-list3 {
+    color: #1E3449;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    text-align: left;
+    line-height: 1.8;
+    padding-left: 20px;
+    /* list-style-type: none; */
 }
 
-.headding_text{
-    margin-left: -155px;
+.data-list1,.data-list2,.data-list3 li {
+    margin-bottom: 8px;
+}
+
+.highlight {
+    font-weight: bolder;
+}
+
+/* Animation classes */
+.First_images,
+.First_list,
+.Image-container,
+.Second_list,
+.Thired-Image-container,
+.Thired_list {
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.First_images.animate,
+.Thired-Image-container.animate {
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.First_list.animate,
+.Thired_list.animate,
+.Image-container.animate {
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+.Second_list.animate {
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199.98px) {
+    .BoardSearch_data,
+    .BoardSearch_datas,
+    .BoardSearch_datass {
+        gap: 30px;
+    }
+    
+    .divider {
+        height: 300px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .headding-body {
+        margin-top: 60px;
+    }
+    
+    .BoardSearch_data,
+    .BoardSearch_datas,
+    .BoardSearch_datass {
+        flex-direction: column;
+        margin: 40px 0;
+        gap: 20px;
+    }
+    
+    .BoardSearch_datas {
+        flex-direction: column-reverse;
+    }
+    
+    .divider {
+        display: none;
+    }
+    
+    .PoolImage,
+    .PoolImages {
+        max-width: 350px;
+    }
+    
+    .section-title {
+        margin-top: 20px;
+    }
+    
+   .data-list1,
+    .data-list2,
+    .data-list3 {
+        text-align: left;
+        padding-left: 20px; /* Make this consistent for all lists */
+    }
+    
+    
+    .ellipse-top,
+    .ellipse-bottom,
+    .ellipse-left {
+        display: none;
+    }
+
+    .section-title {
+        margin-top: 20px;
+        text-align: left;
+        padding-left: 0; /* Remove any padding that might offset the title */
+        margin-left: 0; /* Ensure no margin is pushing it right */
+    }
+    
+    .data-list1,
+    .data-list2,
+    .data-list3 {
+        text-align: left;
+        padding-left: 0; /* Remove padding that might offset the list */
+        margin-left: 0; /* Ensure no margin is pushing it right */
+    }
+    
+    .data-list1 li,
+    .data-list2 li,
+    .data-list3 li {
+        padding-left: 0; /* Ensure list items aren't offset */
+        margin-left: 0; /* Remove any default list indentation */
+        list-style-position: inside; /* Keep bullets aligned with text */
+    }
+    
+    /* For the specific list containers */
+    .First_list, 
+    .Second_list,
+    .Thired_list {
+        width: 100%;
+        padding: 0 15px; /* Add some padding to prevent text from touching screen edges */
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .headding-body {
+        margin-top: 40px;
+    }
+    
+    .board-search-container {
+        margin-top: -40px;
+        max-height:135rem;
+        min-height:130rem;
+    }
+    
+    .PoolImage,
+    .PoolImages {
+        max-width: 280px;
+    }
+    
+    .data-list1,.data-list2,.data-list3 {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+     .BoardSearch_data,
+    .BoardSearch_datas,
+    .BoardSearch_datass {
+        align-items: flex-start; /* Align items to the left */
+        padding: 0 15px; /* Add some padding to prevent content from touching edges */
+    }
+    
+    /* Make sure images are centered even though other content is left-aligned */
+    .First_images,
+    .Image-container,
+    .Thired-Image-container {
+        align-self: center;
+    }
+    
+    /* Remove any residual margins or padding that might affect alignment */
+    .section-title,
+    .data-list1,
+    .data-list2,
+    .data-list3 {
+        margin-left: 0;
+        padding-left: 0;
+    }
+    
+    /* Specifically target the list items */
+    .data-list1 li,
+    .data-list2 li,
+    .data-list3 li {
+        text-indent: -20px; /* Adjust this value to control bullet alignment */
+        padding-left: 20px; /* This creates space for the bullet */
+    }
 }
 
 @media (max-width: 575.98px) {
-    .BoardSearch_data {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top:-120px;
-        align-items:center;
-        height: 100vh;
-    }
-
-    .divider{
-        display:none;
-    }
-    .PoolImage{
-        width: 100%;
-    }
-
-    .BoardSearch_datas {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        margin-top:-50px;
-        align-items:center;
-        height: 100vh;
+    .headding {
+        font-size: 1.5rem;
     }
     
-    .Image-container{
-        margin-top:300px;
-    }
-
-    .Thired-Image-container{
-        margin-top: 300px;
-    }
-
-    .PoolImages{
-        width: 100%;
-    }
-
-    .BoardSearch_datass {
-        display: flex;
-        flex-direction:column;
-        justify-content: center;
-        margin-top:100px;
-        align-items:center;
-        height: 100vh;
-    }
-
-    .headding_text{
-        margin-left:10px;
+    .section-title {
+        font-size: 1.2rem;
     }
     
-    /* Disable animations on mobile */
+    .data-list {
+        font-size: 0.9rem;
+    }
+    
+    /* Disable animations on very small screens */
     .First_images,
     .First_list,
     .Image-container,
@@ -140,138 +340,4 @@ body {
         transform: none !important;
         animation: none !important;
     }
-}
-
-@media (max-height: 740px) and (max-width: 360px) {
-    .BoardSearch_data {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top:-40px;
-        align-items:center;
-        height: 100vh;
-    }
-
-    .divider{
-        display:none;
-    }
-    .PoolImage{
-        width: 100%;
-    }
-
-    .BoardSearch_datas {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        margin-top:80px;
-        align-items:center;
-        height: 100vh;
-    }
-    
-    .Image-container{
-        margin-top:300px;
-    }
-
-    .Thired-Image-container{
-        margin-top: 300px;
-    }
-
-    .PoolImages{
-        width: 100%;
-    }
-
-    .BoardSearch_datass {
-        display: flex;
-        flex-direction:column;
-        justify-content: center;
-        margin-top:230px;
-        margin-bottom:80px;
-        align-items:center;
-        height: 100vh;
-    }
-
-    .headding_text{
-        margin-left:10px;
-    }
-}
-@keyframes slideInFromLeft {
-  0% {
-      transform: translateX(-100%);
-      opacity: 0;
-  }
-  100% {
-      transform: translateX(0);
-      opacity: 1;
-  }
-}
-
-@keyframes slideInFromRight {
-  0% {
-      transform: translateX(100%);
-      opacity: 0;
-  }
-  100% {
-      transform: translateX(0);
-      opacity: 1;
-  }
-}
-
-.First_images {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.First_images.animate {
-  animation: slideInFromLeft 1s ease-out forwards;
-}
-
-.First_list {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.First_list.animate {
-  animation: slideInFromRight 1s ease-out forwards;
-}
-
-.Image-container {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.Image-container.animate {
-  animation: slideInFromRight 1s ease-out forwards;
-}
-
-.Second_list {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.Second_list.animate {
-  animation: slideInFromLeft 1s ease-out forwards;
-}
-
-.Thired-Image-container {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.Thired-Image-container.animate {
-  animation: slideInFromLeft 1s ease-out forwards;
-}
-
-.Thired_list {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.Thired_list.animate {
-  animation: slideInFromRight 1s ease-out forwards;
 }

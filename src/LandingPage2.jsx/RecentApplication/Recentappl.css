@@ -113,6 +113,33 @@ body {
     }
   }
 
+/* Hide scroll buttons on mobile */
+@media (max-width: 767.98px) {
+  .SideBarButton {
+    display: none !important;
+  }
+  
+  .testimonials-card-div {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Always show scrollbar on mobile */
+  .align::-webkit-scrollbar {
+    display: block !important;
+    height: 6px;
+  }
+}
 
+/* Show scroll buttons on desktop */
+@media (min-width: 768px) {
+  .SideBarButton {
+    display: flex !important;
+  }
+  
+  .testimonials-card-div {
+    overflow-x: hidden !important;
+  }
+}
 
   

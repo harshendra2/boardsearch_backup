@@ -24,7 +24,7 @@ const RecentApplication = () => {
 
   return (
     <Container className="recent-app" style={{ zIndex: 1, position: "relative" }}>
-      <div className="headding-body">
+      <div className="headding-body" style={{}}>
         <p className="headding" style={{ fontFamily: "Poppins" }}>
           Recent Appointments
           <svg viewBox="0 0 100 2" preserveAspectRatio="none">
@@ -46,6 +46,7 @@ const RecentApplication = () => {
           zIndex: 10,
           position: "relative",
           scrollBehavior: "smooth",
+          paddingTop:"5px"
         }}
       >
         {testimonials &&
@@ -95,14 +96,14 @@ const RecentApplication = () => {
           ))}
       </div>
 
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: "30px",marginTop:"-30px" }}>
-      <div onClick={scrollLeft} style={{ cursor: "pointer" }}>
-          <img style={{ cursor: "pointer" }} src={next} alt="Next" />
-        </div>
-        <div  onClick={scrollRight} style={{ cursor: "pointer" }}>
-          <img style={{cursor:"pointer"}} src={prev} alt="Previous" />
-        </div>
-      </div>
+      <div className="SideBarButton" style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: "30px", marginTop: "-30px" }}>
+  <div onClick={scrollLeft} style={{ cursor: "pointer" }}>
+    <img style={{ cursor: "pointer" }} src={next} alt="Next" />
+  </div>
+  <div onClick={scrollRight} style={{ cursor: "pointer" }}>
+    <img style={{cursor: "pointer"}} src={prev} alt="Previous" />
+  </div>
+</div>
     </Container>
   );
 };

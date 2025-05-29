@@ -22,7 +22,7 @@ margin-bottom:20px;
 
 @media (max-width: 575.98px) {
     .body-container{
-       margin-top: 100px;
+       margin-top:4px;
     }
     .MarkMan{
         display:none;

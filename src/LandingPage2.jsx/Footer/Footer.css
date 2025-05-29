@@ -1,28 +1,31 @@
 body {
     font-family: 'Nunito Sans', sans-serif;
-  }
+    margin: 0;
+    padding: 0;
+}
 
 .Footer-background-container {
     background-size: cover;
     background-position: center;
-    height: 90vh;
+    height: auto; /* Changed from fixed height to auto */
+    min-height: 75vh; /* Ensures it takes at least full viewport height */
     width: 100%;
     position: relative;
-    overflow-x: hidden; /* Prevents horizontal scrolling */
+    overflow-x: hidden;
 }
 
 .Footer_Sub_container {
     background-color: #1a2740e8;
-    width: 100vw; /* Ensures full width without overflow */
-    height: 90vh;
+    width: 100%;
+    min-height: 75vh; /* Changed from fixed height to min-height */
     position: absolute;
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0 10px; /* Adds padding to prevent content from touching edges */
+    justify-content: space-between; /* Changed to space-between for better spacing */
+    padding: 40px 10px; /* Added padding top and bottom */
     box-sizing: border-box;
 }
 
@@ -30,17 +33,18 @@ body {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    gap: 90px;
     width: 100%;
+    flex: 1; /* Takes available space */
+    align-items: center; /* Center items vertically */
 }
 
 .Footer_first_tab_container, .footer_last_tab_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:20px;
+    gap: 20px;
     width: 400px;
-    max-width: 100%; /* Prevents elements from exceeding screen width */
+    max-width: 100%;
 }
 
 .footer_contact_tab {
@@ -50,45 +54,50 @@ body {
     gap: 10px;
 }
 
-@media (max-width: 575.98px) {
+.Footer_Sub_container > p {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
     .Foooter_section_container {
         flex-direction: column;
-        align-items: center;
         gap: 40px;
-        width: 100%;
+        padding: 20px 0;
     }
 
     .divider {
         display: none;
     }
+    .Footer-background-container {
+        min-height: 95vh;
+    }
+    .Footer_Sub_container {
+          min-height: 95vh;
+    }
 
-    .Footer_logo_container {
-        display: flex;
-        flex-direction: column;
+    .Footer_first_tab_container, .footer_last_tab_container {
+        width: 100%;
+        padding: 0 20px;
+        text-align: center;
         align-items: center;
-        margin-top: 20px;
     }
 
     .Footer_logo {
         width: 300px;
-    }
-
-    .Footer_container_details {
-        width: 100%;
-        max-width: 400px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0 10px;
+        max-width: 100%;
     }
 
     .footer_last_tab_container {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+        gap: 15px;
+    }
+
+    .Footer_Sub_container {
+        padding: 30px 10px;
         justify-content: center;
-        align-items: center;
-        padding: 0 10px;
+    }
+
+    .Footer_Sub_container > p {
+        margin-top: 30px;
     }
 }

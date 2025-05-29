@@ -297,7 +297,7 @@ function EditPersonalForm() {
                                 ) : null}
                             </Col>
 
-                            {/* {aadharverify ? null : (
+                            {aadharverify ? null : (
                                 <>
                                     <Col
                                         xs={3}
@@ -327,7 +327,7 @@ function EditPersonalForm() {
                                         className="d-none"
                                     />
                                 </>
-                            )} */}
+                            )}
                         </Row>
                         {/* OTO SEction */}
                         {/* {aadharverify ? null : hideOTP ? (
@@ -371,7 +371,7 @@ function EditPersonalForm() {
                                     </Button>
                                 </Col>
                             </Row>
-                        ) : null} */}
+                         ) : null} */}
                     </Form.Group>
                     <Form.Group controlId="email" style={{ marginTop: '8px' }}>
                         <Form.Label
