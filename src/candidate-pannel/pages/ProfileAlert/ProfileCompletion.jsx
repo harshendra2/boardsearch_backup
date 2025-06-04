@@ -14,19 +14,28 @@ const ProfileCompletionModal = ({ onClose, setShowModal }) => {
         basicDetails: 0,
         personalDetails: 0,
         workDetails: 0,
-        educationDetails: 0
+        educationDetails: 0,
+        ProfileVerification:0
     });
 
     const sections = [
         { name: 'Basic Details', progress: profileCompletion.basicDetails },
+        // {
+        //     name: 'Personal Details',
+        //     progress: profileCompletion.personalDetails
+        // },
         {
             name: 'Personal Details',
-            progress: profileCompletion.personalDetails
+            progress:profileCompletion==1?100:45
         },
         { name: 'Work Details', progress: profileCompletion.workDetails },
-        {
+        // {
+        //     name: 'Education Details',
+        //     progress: profileCompletion.educationDetails
+        // }
+         {
             name: 'Education Details',
-            progress: profileCompletion.educationDetails
+            progress:100
         }
     ];
 
@@ -136,7 +145,7 @@ const ProfileCompletionModal = ({ onClose, setShowModal }) => {
                     </div>
 
                     <ul className="list-unstyled">
-                        {sections.map((section, index) => (
+                        {/* {sections.map((section, index) => (
                             <li key={index} style={{ marginBottom: '10px' }}>
                                 <strong style={{ fontSize: '0.8rem' }}>
                                     {section.name}
@@ -147,7 +156,23 @@ const ProfileCompletionModal = ({ onClose, setShowModal }) => {
                                     animated
                                 />
                             </li>
-                        ))}
+                        ))} */}
+                        {sections.map((section, index) => (
+    <li key={index} style={{ marginBottom: '10px' }}>
+        <strong style={{ fontSize: '0.8rem' }}>
+            {section.name}
+        </strong>
+        <ProgressBar
+            now={section.progress}
+            label={`${section.progress}%`}
+            animated
+        />
+        {section?.name === "Personal Details" &&profileCompletion?.ProfileVerification === 0 && (
+            <p style={{fontSize:"0.8rem" , color:"red"}}>Admin will update the status after verification </p>
+        )}
+    </li>
+))}
+
                     </ul>
                     <Button
                         variant="success"

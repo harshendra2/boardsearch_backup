@@ -48,7 +48,7 @@ export const AppliedJobProvider = ({ children }) => {
                         )
                 );
 
-                setAppliedJobData(prevData =>
+                 setAppliedJobData(prevData =>
                     currentPage == 1 ? data : [...prevData, ...newItems]
                 );
 

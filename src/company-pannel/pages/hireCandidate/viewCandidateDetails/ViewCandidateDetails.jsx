@@ -611,7 +611,7 @@ const ViewCandidateDetails = () => {
                                                 fontSize: '0.8rem'
                                             }}
                                         >
-                                            {candidate_detials?.workDetails?.skill?.map(
+                                            {candidate_detials?.workDetails?.skill&&candidate_detials?.workDetails?.skill.map(
                                                 (item, index) => (
                                                     <span key={index}>
                                                         {item}
@@ -631,7 +631,7 @@ const ViewCandidateDetails = () => {
 
                                 <p className="basic-details">Experience</p>
 
-                                {candidate_detials?.workDetails?.Experience.map(
+                                {candidate_detials?.workDetails?.Experience&&candidate_detials?.workDetails?.Experience.map(
                                     (item, iddex) => (
                                         <>
                                             <table
@@ -1058,7 +1058,7 @@ const ViewCandidateDetails = () => {
                                             </div>
                                         </td>
                                     </tr>
-                                    {candidate_detials?.educationDetails?.certificates?.map((item, index) => (
+                                    {candidate_detials?.educationDetails?.certificates&&candidate_detials?.educationDetails?.certificates.map((item, index) => (
   <tr key={index}>
     <td
       style={{
@@ -1083,7 +1083,7 @@ const ViewCandidateDetails = () => {
                                 {/* Education */}
                                 <hr style={{ width: '90%' }} />
                                 <p className="basic-details">Education</p>
-                                {candidate_detials?.educationDetails?.Education.map(
+                                {candidate_detials?.educationDetails?.Education&&candidate_detials?.educationDetails?.Education.map(
                                     (item, iddex) => (
                                         <>
                                             <table

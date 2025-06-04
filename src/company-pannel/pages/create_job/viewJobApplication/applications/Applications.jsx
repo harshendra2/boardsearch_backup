@@ -98,10 +98,9 @@ const Applications = () => {
 
     const DownLoadCandidateCV = async () => {
         const jobid = localStorage.getItem('job_id');
-    
         try {
             const response = await axios.get(
-                `${BaseUrl}company/get_Canidate_cv/${jobid}`,
+                 `${BaseUrl}company/get_Canidate_cv/${jobid}`, 
                 {
                     responseType: 'blob'
                 }

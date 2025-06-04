@@ -30,11 +30,11 @@ const AppliedJob = () => {
     }
 
     const handleSelectchange = async e => {
-        navigate('/candidate-dashboard/applied-job/applied-jobs');
+        // navigate('/candidate-dashboard/applied-job/applied-jobs');
         const { value } = e.target;
-
         setSelectedValue(value);
         setCurrentPage(1);
+        await fetch_applied_job()
     };
 
     useEffect(() => {
